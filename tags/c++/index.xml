@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>C&#43;&#43; on Jia-Baos</title>
+    <link>https://jia-baos.github.io/tags/c&#43;&#43;/</link>
+    <description>Recent content in C&#43;&#43; on Jia-Baos</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Wed, 05 Apr 2023 12:08:11 +0800</lastBuildDate><atom:link href="https://jia-baos.github.io/tags/c++/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Basical Skills</title>
+      <link>https://jia-baos.github.io/basical-skills/</link>
+      <pubDate>Wed, 05 Apr 2023 12:08:11 +0800</pubDate>
+      
+      <guid>https://jia-baos.github.io/basical-skills/</guid>
+      <description>Notes: Here is a link to my Github homepage Jia-Baos.
+C/C++ is the programming language i use most, python and shell are often used for scripting. Furthermore, cmake and mingw wil be used for Compiling across platforms.
+Opencv is the 3rd party Library i use most, besides, i&amp;rsquo;m also trying more 3rd party Libraries such as: Zlib, Pnglib, Blas, etc.
+Jia-Baos Editor-in-Chief</description>
+    </item>
+    
+  </channel>
+</rss>
