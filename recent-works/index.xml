@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Recent Works on Jia-Baos</title>
+    <link>https://jia-baos.github.io/recent-works/</link>
+    <description>Recent content in Recent Works on Jia-Baos</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Thu, 20 Apr 2023 17:04:11 +0800</lastBuildDate><atom:link href="https://jia-baos.github.io/recent-works/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Optical Flow Estimation</title>
+      <link>https://jia-baos.github.io/recent-works/first/</link>
+      <pubDate>Thu, 20 Apr 2023 17:04:11 +0800</pubDate>
+      
+      <guid>https://jia-baos.github.io/recent-works/first/</guid>
+      <description>Notes: Here is a link to my Github homepage, Jia-Baos.
+There are many excellent works about optical flow estimation, which is closely related to our research.
+Matching methods: AKAZE, DeepMatching, CPM.
+Interpolation methods: LDOF, DeepFlow, EpicFlow, RicFlow.
+Source code of our work will be soon avaiable online at ACPM&amp;hellip;</description>
+    </item>
+    
+    <item>
+      <title>waiting</title>
+      <link>https://jia-baos.github.io/recent-works/second/</link>
+      <pubDate>Wed, 05 Apr 2023 13:03:11 +0800</pubDate>
+      
+      <guid>https://jia-baos.github.io/recent-works/second/</guid>
+      <description>Notes: Here is a link to my Github homepage, Jia-Baos.</description>
+    </item>
+    
+  </channel>
+</rss>
