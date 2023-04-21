@@ -8,20 +8,29 @@
     <language>en-US</language>
     <lastBuildDate>Thu, 20 Apr 2023 17:04:11 +0800</lastBuildDate><atom:link href="https://jia-baos.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>biography</title>
+      <link>https://jia-baos.github.io/tags/biography/</link>
+      <pubDate>Thu, 20 Apr 2023 17:04:11 +0800</pubDate>
+      
+      <guid>https://jia-baos.github.io/tags/biography/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>demons</title>
+      <link>https://jia-baos.github.io/tags/demons/</link>
+      <pubDate>Thu, 20 Apr 2023 17:04:11 +0800</pubDate>
+      
+      <guid>https://jia-baos.github.io/tags/demons/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>optflow</title>
       <link>https://jia-baos.github.io/tags/optflow/</link>
       <pubDate>Thu, 20 Apr 2023 17:04:11 +0800</pubDate>
       
       <guid>https://jia-baos.github.io/tags/optflow/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>waiting</title>
-      <link>https://jia-baos.github.io/tags/waiting/</link>
-      <pubDate>Wed, 05 Apr 2023 13:03:11 +0800</pubDate>
-      
-      <guid>https://jia-baos.github.io/tags/waiting/</guid>
       <description></description>
     </item>
     
@@ -40,15 +49,6 @@
       <pubDate>Wed, 05 Apr 2023 12:08:11 +0800</pubDate>
       
       <guid>https://jia-baos.github.io/tags/opencv/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>computer vision</title>
-      <link>https://jia-baos.github.io/tags/computer-vision/</link>
-      <pubDate>Wed, 05 Apr 2023 11:51:11 +0800</pubDate>
-      
-      <guid>https://jia-baos.github.io/tags/computer-vision/</guid>
       <description></description>
     </item>
     

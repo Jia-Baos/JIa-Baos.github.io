@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Opencv on Jia-Baos</title>
-    <link>https://jia-baos.github.io/tags/opencv/</link>
-    <description>Recent content in Opencv on Jia-Baos</description>
+    <title>Basical Skills on Jia-Baos</title>
+    <link>https://jia-baos.github.io/basical-skills/</link>
+    <description>Recent content in Basical Skills on Jia-Baos</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Wed, 05 Apr 2023 12:08:11 +0800</lastBuildDate><atom:link href="https://jia-baos.github.io/tags/opencv/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 05 Apr 2023 12:08:11 +0800</lastBuildDate><atom:link href="https://jia-baos.github.io/basical-skills/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Basical Skills</title>
       <link>https://jia-baos.github.io/basical-skills/basicalskills/</link>

@@ -9,10 +9,10 @@
     <lastBuildDate>Thu, 20 Apr 2023 17:04:11 +0800</lastBuildDate><atom:link href="https://jia-baos.github.io/tags/optflow/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Optical Flow Estimation</title>
-      <link>https://jia-baos.github.io/recent-works/first/</link>
+      <link>https://jia-baos.github.io/recent-works/work1/</link>
       <pubDate>Thu, 20 Apr 2023 17:04:11 +0800</pubDate>
       
-      <guid>https://jia-baos.github.io/recent-works/first/</guid>
+      <guid>https://jia-baos.github.io/recent-works/work1/</guid>
       <description>Notes: Here is a link to my Github homepage, Jia-Baos.
 There are many excellent works about optical flow estimation, which is closely related to our research.
 Matching methods: AKAZE, DeepMatching, CPM.
