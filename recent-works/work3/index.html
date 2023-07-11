@@ -48,7 +48,7 @@
   <div class="col-md-12">
     <h6 class="text-left meta">
         PUBLISHED ON JUL 10, 2023 
-       / 0 MIN READ
+       / 2 MIN READ
       
       
       
@@ -90,15 +90,83 @@
 </span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> __cplusplus <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    testForward(<span style="color:#ae81ff">1</span>);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;======================&#34;</span> <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    * left value
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    * right value
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    * right value
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    */</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">int</span> x <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
 </span></span><span style="display:flex;"><span>    testForward(x);
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    * left value
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    * left value
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    * right value
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    */</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div>
+</span></span></code></pre></div><p>下面为 std::forward 和 std::move 的源码</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span>  <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   *  @brief  Forward an lvalue.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   *  @return The parameter cast to the specified type.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   *
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   *  This function is used to implement &#34;perfect forwarding&#34;.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   */</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> _Tp<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    _GLIBCXX_NODISCARD
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">constexpr</span> _Tp<span style="color:#f92672">&amp;&amp;</span>
+</span></span><span style="display:flex;"><span>    forward(<span style="color:#66d9ef">typename</span> std<span style="color:#f92672">::</span>remove_reference<span style="color:#f92672">&lt;</span>_Tp<span style="color:#f92672">&gt;::</span>type<span style="color:#f92672">&amp;</span> __t) <span style="color:#66d9ef">noexcept</span>
+</span></span><span style="display:flex;"><span>    { <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">static_cast</span><span style="color:#f92672">&lt;</span>_Tp<span style="color:#f92672">&amp;&amp;&gt;</span>(__t); }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   *  @brief  Forward an rvalue.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   *  @return The parameter cast to the specified type.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   *
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   *  This function is used to implement &#34;perfect forwarding&#34;.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   */</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> _Tp<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    _GLIBCXX_NODISCARD
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">constexpr</span> _Tp<span style="color:#f92672">&amp;&amp;</span>
+</span></span><span style="display:flex;"><span>    forward(<span style="color:#66d9ef">typename</span> std<span style="color:#f92672">::</span>remove_reference<span style="color:#f92672">&lt;</span>_Tp<span style="color:#f92672">&gt;::</span>type<span style="color:#f92672">&amp;&amp;</span> __t) <span style="color:#66d9ef">noexcept</span>
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">static_assert</span>(<span style="color:#f92672">!</span>std<span style="color:#f92672">::</span>is_lvalue_reference<span style="color:#f92672">&lt;</span>_Tp<span style="color:#f92672">&gt;::</span>value, <span style="color:#e6db74">&#34;template argument&#34;</span>
+</span></span><span style="display:flex;"><span>		    <span style="color:#e6db74">&#34; substituting _Tp must not be an lvalue reference type&#34;</span>);
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">static_cast</span><span style="color:#f92672">&lt;</span>_Tp<span style="color:#f92672">&amp;&amp;&gt;</span>(__t);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">/**
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   *  @brief  Convert a value to an rvalue.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   *  @param  __t  A thing of arbitrary type.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">   *  @return The parameter cast to an rvalue-reference to allow moving it.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  */</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> _Tp<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>    _GLIBCXX_NODISCARD
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">constexpr</span> <span style="color:#66d9ef">typename</span> std<span style="color:#f92672">::</span>remove_reference<span style="color:#f92672">&lt;</span>_Tp<span style="color:#f92672">&gt;::</span>type<span style="color:#f92672">&amp;&amp;</span>
+</span></span><span style="display:flex;"><span>    move(_Tp<span style="color:#f92672">&amp;&amp;</span> __t) <span style="color:#66d9ef">noexcept</span>
+</span></span><span style="display:flex;"><span>    { <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">static_cast</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> std<span style="color:#f92672">::</span>remove_reference<span style="color:#f92672">&lt;</span>_Tp<span style="color:#f92672">&gt;::</span>type<span style="color:#f92672">&amp;&amp;&gt;</span>(__t); }
+</span></span></code></pre></div><p>分析&hellip;</p>
+<ol>
+<li>std::remove_reference</li>
+</ol>
+<p>若类型 T 为引用类型，则提供成员 typedef type，其为 T 所引用的类型。否则 type 为 T。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">T</span> <span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">remove_reference</span>      {<span style="color:#66d9ef">typedef</span> T type;};
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">T</span> <span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">remove_reference</span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&amp;&gt;</span>  {<span style="color:#66d9ef">typedef</span> T type;};
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">T</span> <span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">remove_reference</span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&amp;&amp;&gt;</span> {<span style="color:#66d9ef">typedef</span> T type;};
+</span></span></code></pre></div><ol start="2">
+<li>std::move</li>
+</ol>
+<p>采用 std::remove_reference 去除引用后，再采用 static_cast 将 _t 强制转化为 右值引用类型。</p>
+<ol start="3">
+<li>std::forward</li>
+</ol>
+<p>采用 static_cast 进行强制转化的过程中触发引用折叠，具体表现为：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span>A<span style="color:#f92672">&amp;</span> <span style="color:#f92672">&amp;</span>	<span style="color:#f92672">-&gt;</span> A<span style="color:#f92672">&amp;</span>
+</span></span><span style="display:flex;"><span>A<span style="color:#f92672">&amp;</span> <span style="color:#f92672">&amp;&amp;</span>	<span style="color:#f92672">-&gt;</span> A<span style="color:#f92672">&amp;</span>
+</span></span><span style="display:flex;"><span>A<span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">&amp;</span>	<span style="color:#f92672">-&gt;</span> A<span style="color:#f92672">&amp;</span>
+</span></span><span style="display:flex;"><span>A<span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">&amp;&amp;</span>	<span style="color:#f92672">-&gt;</span> A<span style="color:#f92672">&amp;&amp;</span>
+</span></span></code></pre></div><p>简单来讲就是左值引用会传染，沾上一个左值引用就变成左值引用了。</p>
+
   </div>
 </section>
 <section id="tag-pane" class="meta">

@@ -13,7 +13,7 @@
       
       <guid>https://jia-baos.github.io/recent-works/work3/</guid>
       <description>std::forward被称为完美转发，它的作用是保持原来的值属性不变。
-#include &amp;lt;bits/stdc++.h&amp;gt; template&amp;lt;typename T&amp;gt; void print(T &amp;amp; t){ std::cout &amp;lt;&amp;lt; &amp;#34;left value&amp;#34; &amp;lt;&amp;lt; std::endl; } template&amp;lt;typename T&amp;gt; void print(T &amp;amp;&amp;amp; t){ std::cout &amp;lt;&amp;lt; &amp;#34;right value&amp;#34; &amp;lt;&amp;lt; std::endl; } template&amp;lt;typename T&amp;gt; void testForward(T &amp;amp;&amp;amp; v){ print(v); print(std::forward&amp;lt;T&amp;gt;(v)); print(std::move(v)); } int main() { std::cout &amp;lt;&amp;lt; __cplusplus &amp;lt;&amp;lt; std::endl; testForward(1); std::cout &amp;lt;&amp;lt; &amp;#34;======================&amp;#34; &amp;lt;&amp;lt; std::endl; int x = 1; testForward(x); return 0; } </description>
+#include &amp;lt;bits/stdc++.h&amp;gt; template&amp;lt;typename T&amp;gt; void print(T &amp;amp; t){ std::cout &amp;lt;&amp;lt; &amp;#34;left value&amp;#34; &amp;lt;&amp;lt; std::endl; } template&amp;lt;typename T&amp;gt; void print(T &amp;amp;&amp;amp; t){ std::cout &amp;lt;&amp;lt; &amp;#34;right value&amp;#34; &amp;lt;&amp;lt; std::endl; } template&amp;lt;typename T&amp;gt; void testForward(T &amp;amp;&amp;amp; v){ print(v); print(std::forward&amp;lt;T&amp;gt;(v)); print(std::move(v)); } int main() { std::cout &amp;lt;&amp;lt; __cplusplus &amp;lt;&amp;lt; std::endl; testForward(1); /* * left value * right value * right value */ int x = 1; testForward(x); /* * left value * left value * right value */ return 0; } 下面为 std::forward 和 std::move 的源码</description>
     </item>
     
   </channel>
