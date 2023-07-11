@@ -6,7 +6,16 @@
     <description>Recent content in Recent Works on Jia-Baos</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Tue, 11 Jul 2023 15:15:37 +0800</lastBuildDate><atom:link href="https://jia-baos.github.io/recent-works/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 11 Jul 2023 22:42:52 +0800</lastBuildDate><atom:link href="https://jia-baos.github.io/recent-works/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Concepts and Requires</title>
+      <link>https://jia-baos.github.io/recent-works/work6/</link>
+      <pubDate>Tue, 11 Jul 2023 22:42:52 +0800</pubDate>
+      
+      <guid>https://jia-baos.github.io/recent-works/work6/</guid>
+      <description>#include &amp;lt;iostream&amp;gt; #include &amp;lt;concepts&amp;gt; template &amp;lt;typename T&amp;gt; concept integral = std::is_integral_v&amp;lt;T&amp;gt;; template&amp;lt;integral T&amp;gt; T Add1(const T&amp;amp; arg) { return arg + 44; } template &amp;lt;typename T&amp;gt; requires std::same_as&amp;lt;T, int&amp;gt; T Add2(const T&amp;amp; arg) { return arg + 44; } template &amp;lt;typename T&amp;gt; T Add3(const T&amp;amp; arg) requires std::same_as&amp;lt;T, int&amp;gt; { return arg + 44; } int main() { std::cout &amp;lt;&amp;lt; Add1(9) &amp;lt;&amp;lt; std::endl; std::cout &amp;lt;&amp;lt; Add2(9) &amp;lt;&amp;lt; std::endl; std::cout &amp;lt;&amp;lt; Add3(9) &amp;lt;&amp;lt; std::endl; std::cout &amp;lt;&amp;lt; Add1(9.</description>
+    </item>
+    
     <item>
       <title>Traits</title>
       <link>https://jia-baos.github.io/recent-works/work5/</link>
