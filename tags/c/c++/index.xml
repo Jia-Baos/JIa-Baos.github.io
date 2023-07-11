@@ -7,6 +7,17 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language><atom:link href="https://jia-baos.github.io/tags/c/c++/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Traits</title>
+      <link>https://jia-baos.github.io/recent-works/work5/</link>
+      <pubDate>Tue, 11 Jul 2023 15:15:37 +0800</pubDate>
+      
+      <guid>https://jia-baos.github.io/recent-works/work5/</guid>
+      <description>Think of a trait as a small object whose main purpose is to carry information used by another object or algorithm to determine “policy” or “implementation details”. - Bjarne Stroustrup
+模板的全特化、偏特化
+#include &amp;lt;bits/stdc++.h&amp;gt; // 模板一般化设计 /* * 模板全特化和偏特化设计版本存在时， * 优点调用 */ template &amp;lt;typename T&amp;gt; struct MyPrint { void print() { std::cout &amp;lt;&amp;lt; &amp;#34;模板一般化设计&amp;#34; &amp;lt;&amp;lt; std::endl; } }; // 模板全特化设计 template &amp;lt;&amp;gt; struct MyPrint&amp;lt;float&amp;gt; { void print() { std::cout &amp;lt;&amp;lt; &amp;#34;模板全特化设计&amp;#34; &amp;lt;&amp;lt; std::endl; } }; // 模板偏特化设计 /* *模板特化时，可以只指定一部分而非所有模板参数， *或者是参数的一部分而非全部特性，这叫做模板的偏特化。 *一个类模板的偏特化本身是一个模板， *使用它时用户还必须为那些在特例化版本中未指定的模板参数提供实参。 */ template &amp;lt;typename T&amp;gt; struct MyPrint&amp;lt;T *&amp;gt; { void print() { std::cout &amp;lt;&amp;lt; &amp;#34;模板偏特化设计&amp;#34; &amp;lt;&amp;lt; std::endl; } }; int main(int argc, char *argv[]) { MyPrint&amp;lt;int&amp;gt; a; MyPrint&amp;lt;float&amp;gt; b; MyPrint&amp;lt;float *&amp;gt; c; a.</description>
+    </item>
+    
+    <item>
       <title>Lvalue and Rvalue</title>
       <link>https://jia-baos.github.io/recent-works/work3/</link>
       <pubDate>Mon, 10 Jul 2023 10:46:51 +0800</pubDate>
