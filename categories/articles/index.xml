@@ -6,7 +6,16 @@
     <description>Recent content in articles on Jia-Baos</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Wed, 12 Jul 2023 08:23:07 +0800</lastBuildDate><atom:link href="https://jia-baos.github.io/categories/articles/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 12 Jul 2023 17:16:44 +0800</lastBuildDate><atom:link href="https://jia-baos.github.io/categories/articles/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>模块</title>
+      <link>https://jia-baos.github.io/recent-works/work8/</link>
+      <pubDate>Wed, 12 Jul 2023 17:16:44 +0800</pubDate>
+      
+      <guid>https://jia-baos.github.io/recent-works/work8/</guid>
+      <description>// Module.ixx module; import &amp;lt;concepts&amp;gt;; export module test; namespace JB { export template&amp;lt;typename T&amp;gt; requires std::is_integral_v&amp;lt;T&amp;gt; T add(const T&amp;amp; t) { return t + 1; } } // main.cpp #include &amp;lt;iostream&amp;gt; import test; int main(int argc, char* argv[]) { std::cout &amp;lt;&amp;lt; JB::add(1) &amp;lt;&amp;lt; std::endl; } </description>
+    </item>
+    
     <item>
       <title>完美转发</title>
       <link>https://jia-baos.github.io/recent-works/work7/</link>
