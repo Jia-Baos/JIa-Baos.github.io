@@ -6,7 +6,16 @@
     <description>Recent content on Jia-Baos</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Wed, 12 Jul 2023 20:44:46 +0800</lastBuildDate><atom:link href="https://jia-baos.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 14 Jul 2023 19:37:43 +0800</lastBuildDate><atom:link href="https://jia-baos.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>多态</title>
+      <link>https://jia-baos.github.io/recent-works/work10/</link>
+      <pubDate>Fri, 14 Jul 2023 19:37:43 +0800</pubDate>
+      
+      <guid>https://jia-baos.github.io/recent-works/work10/</guid>
+      <description>#include &amp;lt;iostream&amp;gt; class A { public: virtual void vfunc1() { puts(&amp;#34;A::vfunc1&amp;#34;); } virtual void vfunc2() { puts(&amp;#34;A::vfunc2&amp;#34;); } void func1() { puts(&amp;#34;A::func1&amp;#34;); } void func2() { puts(&amp;#34;A::func2&amp;#34;); } private: int m_data1; int m_data2; }; class B :public A { public: virtual void vfunc1() { puts(&amp;#34;B::vfunc1&amp;#34;); } void func1() { puts(&amp;#34;B::func1&amp;#34;); } private: int m_data3; }; class C :public B { public: virtual void vfunc2() { puts(&amp;#34;C::vfunc2&amp;#34;); } void func2() { puts(&amp;#34;C::func2&amp;#34;); } private: int m_data1; int m_data4; }; int main(int argc, char* argv[]) { std::cout &amp;lt;&amp;lt; _MSVC_LANG &amp;lt;&amp;lt; std::endl; A a; B b; C c; puts(&amp;#34;-----------------&amp;#34;); a.</description>
+    </item>
+    
     <item>
       <title>STL 函数对象</title>
       <link>https://jia-baos.github.io/recent-works/work9/</link>
