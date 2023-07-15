@@ -17,5 +17,16 @@
 I am pursuing my master’s degree in Shandong University of Science and Technology. My main focus is computer vision and their applications in industry, besides, i am pleased to embrace new technologies and amazing ideas.</description>
     </item>
     
+    <item>
+      <title>Basical Skills</title>
+      <link>https://jia-baos.github.io/biography/basicalskills/</link>
+      <pubDate>Wed, 05 Apr 2023 12:08:11 +0800</pubDate>
+      
+      <guid>https://jia-baos.github.io/biography/basicalskills/</guid>
+      <description>Notes: Here is a link to my Github homepage, Jia-Baos.
+C++ is the programming language i use most, python and shell are often used for scripting, furthermore, cmake and mingw wil be used for compiling across platforms.
+Opencv is the 3rd party library i use most, besides, i&amp;rsquo;m also trying more 3rd party libraries such as: Blas, MKL, etc.</description>
+    </item>
+    
   </channel>
 </rss>
