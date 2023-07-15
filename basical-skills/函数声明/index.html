@@ -10,7 +10,7 @@
 <meta name="keywords" content="minimalist,blog,goa,hugo,developer">
 
 <title>
-  Jia-Baos - 传递函数模板 
+  Jia-Baos - 函数声明 
 </title>
 
 <meta name="generator" content="Hugo 0.111.3">
@@ -41,7 +41,7 @@
 
 
 <header class="text-left title">
-  <h1 class="title">传递函数模板</h1>
+  <h1 class="title">函数声明</h1>
 </header>
 <section id="category-pane" class="meta">
   
@@ -68,23 +68,16 @@
     
     <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;bits/stdc++.h&gt;</span><span style="color:#75715e">
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#define BY_NAME(F) [](auto&amp;&amp;...args){return F(args...);}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">func</span>(<span style="color:#66d9ef">int</span> n) { std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> n <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl; }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">using</span> type <span style="color:#f92672">=</span> <span style="color:#66d9ef">decltype</span>(func);
+</span></span><span style="display:flex;"><span>type F; <span style="color:#75715e">// 函数声明
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> F, <span style="color:#66d9ef">typename</span>...Args<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">auto</span> foo(F f, Args <span style="color:#f92672">&amp;&amp;</span>...args) {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">f</span>(std<span style="color:#f92672">::</span>forward<span style="color:#f92672">&lt;</span>Args<span style="color:#f92672">&gt;</span>(args)...);
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">auto</span> val1 <span style="color:#f92672">=</span> foo([](<span style="color:#66d9ef">auto</span> <span style="color:#f92672">&amp;&amp;</span>...args) {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> std<span style="color:#f92672">::</span>min(args...);
-</span></span><span style="display:flex;"><span>    }, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> val1 <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">auto</span> val2 <span style="color:#f92672">=</span> foo(BY_NAME(std<span style="color:#f92672">::</span>min), <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>);
-</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> val2 <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
+</span></span><span style="display:flex;"><span>    F(<span style="color:#ae81ff">1</span>);
 </span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">F</span>(<span style="color:#66d9ef">int</span>) { std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;Defination of Function&#34;</span> <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl; }
 </span></span></code></pre></div>
   </div>
 </section>
@@ -113,13 +106,13 @@
 <section id="menu-pane" class="menu text-center">
   
   
-  <span><a class="menu-item" href="https://jia-baos.github.io/basical-skills/%E9%87%8D%E8%BD%BD%E5%92%8C%E9%87%8D%E5%86%99%E5%92%8C%E8%A6%86%E7%9B%96/">&lt; prev | </a></span>
+  <span><a class="menu-item" href="https://jia-baos.github.io/basical-skills/%E4%BC%A0%E9%80%92%E5%87%BD%E6%95%B0%E6%A8%A1%E6%9D%BF/">&lt; prev | </a></span>
   
   
   <span><a class="menu-item" href="/Basical%20Skills">basical skills</a></span>
   
   
-  <span><a class="menu-item" href="https://jia-baos.github.io/basical-skills/%E5%87%BD%E6%95%B0%E5%A3%B0%E6%98%8E/"> | next &gt;</a></span>
+  <span><a class="menu-item" href="https://jia-baos.github.io/basical-skills/%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0/"> | next &gt;</a></span>
   
   
   <h4 class="text-center"><a class="menu-item" href="https://jia-baos.github.io/">home</a></h4>

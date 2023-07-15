@@ -10,7 +10,7 @@
 <meta name="keywords" content="minimalist,blog,goa,hugo,developer">
 
 <title>
-  Jia-Baos - 传递函数模板 
+  Jia-Baos - 对象存储可变参数 
 </title>
 
 <meta name="generator" content="Hugo 0.111.3">
@@ -41,14 +41,14 @@
 
 
 <header class="text-left title">
-  <h1 class="title">传递函数模板</h1>
+  <h1 class="title">对象存储可变参数</h1>
 </header>
 <section id="category-pane" class="meta">
   
   <div class="col-md-12">
     <h6 class="text-left meta">
         PUBLISHED ON JUL 15, 2023 
-       / 0 MIN READ
+       / 1 MIN READ
       
       
       
@@ -68,22 +68,28 @@
     
     <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;bits/stdc++.h&gt;</span><span style="color:#75715e">
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#define BY_NAME(F) [](auto&amp;&amp;...args){return F(args...);}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// std::invocable 检查类型能否以给定的实参类型调用
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> F, <span style="color:#66d9ef">typename</span>...Args<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">requires</span> std<span style="color:#f92672">::</span>invocable<span style="color:#f92672">&lt;</span>F, Args...<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Input</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">using</span> R <span style="color:#f92672">=</span> std<span style="color:#f92672">::</span>invoke_result_t<span style="color:#f92672">&lt;</span>F, Args...<span style="color:#f92672">&gt;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    F f_;   <span style="color:#75715e">// 可调用对象
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    std<span style="color:#f92672">::</span>tuple<span style="color:#f92672">&lt;</span>Args...<span style="color:#f92672">&gt;</span> value_; <span style="color:#75715e">// 存储可变参数
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> F, <span style="color:#66d9ef">typename</span>...Args<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">auto</span> foo(F f, Args <span style="color:#f92672">&amp;&amp;</span>...args) {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">f</span>(std<span style="color:#f92672">::</span>forward<span style="color:#f92672">&lt;</span>Args<span style="color:#f92672">&gt;</span>(args)...);
-</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>    Input(F f, Args...args) <span style="color:#f92672">:</span> f_(f), value_(args...) {}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">auto</span> val1 <span style="color:#f92672">=</span> foo([](<span style="color:#66d9ef">auto</span> <span style="color:#f92672">&amp;&amp;</span>...args) {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> std<span style="color:#f92672">::</span>min(args...);
-</span></span><span style="display:flex;"><span>    }, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">constexpr</span> R <span style="color:#a6e22e">operator</span>()() <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">noexcept</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// std::apply 推导以一组实参调用一个可调用对象的结果类型
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#66d9ef">return</span> std<span style="color:#f92672">::</span>apply(f_, value_);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>};
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> val1 <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">auto</span> val2 <span style="color:#f92672">=</span> foo(BY_NAME(std<span style="color:#f92672">::</span>min), <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>);
-</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> val2 <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>argv[]) {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 传入可调用对象和形参包
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    Input input([](<span style="color:#66d9ef">int</span> a, <span style="color:#66d9ef">float</span> b) { std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> a <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34; &#34;</span> <span style="color:#f92672">&lt;&lt;</span> b <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl; }, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2.0</span>);
+</span></span><span style="display:flex;"><span>    input();    <span style="color:#75715e">// 仿函数调用
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>get<span style="color:#f92672">&lt;</span><span style="color:#ae81ff">0</span><span style="color:#f92672">&gt;</span>(input.value_) <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div>
   </div>
@@ -113,13 +119,13 @@
 <section id="menu-pane" class="menu text-center">
   
   
-  <span><a class="menu-item" href="https://jia-baos.github.io/basical-skills/%E9%87%8D%E8%BD%BD%E5%92%8C%E9%87%8D%E5%86%99%E5%92%8C%E8%A6%86%E7%9B%96/">&lt; prev | </a></span>
+  <span><a class="menu-item" href="https://jia-baos.github.io/basical-skills/%E5%87%BD%E6%95%B0%E5%A3%B0%E6%98%8E/">&lt; prev | </a></span>
   
   
   <span><a class="menu-item" href="/Basical%20Skills">basical skills</a></span>
   
   
-  <span><a class="menu-item" href="https://jia-baos.github.io/basical-skills/%E5%87%BD%E6%95%B0%E5%A3%B0%E6%98%8E/"> | next &gt;</a></span>
+  <span><a class="menu-item" href="https://jia-baos.github.io/basical-skills/%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/"> | next &gt;</a></span>
   
   
   <h4 class="text-center"><a class="menu-item" href="https://jia-baos.github.io/">home</a></h4>

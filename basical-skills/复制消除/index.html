@@ -10,7 +10,7 @@
 <meta name="keywords" content="minimalist,blog,goa,hugo,developer">
 
 <title>
-  Jia-Baos - 传递函数模板 
+  Jia-Baos - 复制消除 
 </title>
 
 <meta name="generator" content="Hugo 0.111.3">
@@ -41,7 +41,7 @@
 
 
 <header class="text-left title">
-  <h1 class="title">传递函数模板</h1>
+  <h1 class="title">复制消除</h1>
 </header>
 <section id="category-pane" class="meta">
   
@@ -68,24 +68,25 @@
     
     <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;bits/stdc++.h&gt;</span><span style="color:#75715e">
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#define BY_NAME(F) [](auto&amp;&amp;...args){return F(args...);}
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> F, <span style="color:#66d9ef">typename</span>...Args<span style="color:#f92672">&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">auto</span> foo(F f, Args <span style="color:#f92672">&amp;&amp;</span>...args) {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">f</span>(std<span style="color:#f92672">::</span>forward<span style="color:#f92672">&lt;</span>Args<span style="color:#f92672">&gt;</span>(args)...);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">X</span> {
+</span></span><span style="display:flex;"><span>    X() { puts(<span style="color:#e6db74">&#34;int&#34;</span>); }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    X(<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> <span style="color:#f92672">&amp;</span>) { puts(<span style="color:#e6db74">&#34;const int&amp;&#34;</span>); }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    X(<span style="color:#66d9ef">int</span> <span style="color:#f92672">&amp;&amp;</span>) { puts(<span style="color:#e6db74">&#34;int&amp;&amp;&#34;</span>); }
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>X <span style="color:#a6e22e">f</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> X();
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>() {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">auto</span> val1 <span style="color:#f92672">=</span> foo([](<span style="color:#66d9ef">auto</span> <span style="color:#f92672">&amp;&amp;</span>...args) {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> std<span style="color:#f92672">::</span>min(args...);
-</span></span><span style="display:flex;"><span>    }, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> val1 <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">auto</span> val2 <span style="color:#f92672">=</span> foo(BY_NAME(std<span style="color:#f92672">::</span>min), <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>);
-</span></span><span style="display:flex;"><span>    std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> val2 <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>argv[]) {
+</span></span><span style="display:flex;"><span>    X x1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;   <span style="color:#75715e">// int&amp;&amp;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    puts(<span style="color:#e6db74">&#34;--------------&#34;</span>);
+</span></span><span style="display:flex;"><span>    X x2 <span style="color:#f92672">=</span> f(); <span style="color:#75715e">// int
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><p><a href="https://visualgmq.gitee.io/2021/07/10/C++%E7%A7%BB%E5%8A%A8%EF%BC%8CRVO%E5%92%8CNRVO/">[1]复制消除</a></p>
+
   </div>
 </section>
 <section id="tag-pane" class="meta">
@@ -113,13 +114,11 @@
 <section id="menu-pane" class="menu text-center">
   
   
-  <span><a class="menu-item" href="https://jia-baos.github.io/basical-skills/%E9%87%8D%E8%BD%BD%E5%92%8C%E9%87%8D%E5%86%99%E5%92%8C%E8%A6%86%E7%9B%96/">&lt; prev | </a></span>
+  <span><a class="menu-item" href="https://jia-baos.github.io/basical-skills/%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/">&lt; prev | </a></span>
   
   
   <span><a class="menu-item" href="/Basical%20Skills">basical skills</a></span>
   
-  
-  <span><a class="menu-item" href="https://jia-baos.github.io/basical-skills/%E5%87%BD%E6%95%B0%E5%A3%B0%E6%98%8E/"> | next &gt;</a></span>
   
   
   <h4 class="text-center"><a class="menu-item" href="https://jia-baos.github.io/">home</a></h4>
