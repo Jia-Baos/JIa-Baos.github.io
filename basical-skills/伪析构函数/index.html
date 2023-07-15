@@ -10,7 +10,7 @@
 <meta name="keywords" content="minimalist,blog,goa,hugo,developer">
 
 <title>
-  Jia-Baos - 复制消除 
+  Jia-Baos - 伪析构函数 
 </title>
 
 <meta name="generator" content="Hugo 0.111.3">
@@ -41,14 +41,14 @@
 
 
 <header class="text-left title">
-  <h1 class="title">复制消除</h1>
+  <h1 class="title">伪析构函数</h1>
 </header>
 <section id="category-pane" class="meta">
   
   <div class="col-md-12">
     <h6 class="text-left meta">
         PUBLISHED ON JUL 15, 2023 
-       / 0 MIN READ
+       / 1 MIN READ
       
       
       
@@ -66,27 +66,26 @@
 <section id="content-pane" class="">
   <div class="col-md-12 text-justify content">
     
-    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;bits/stdc++.h&gt;</span><span style="color:#75715e">
+    <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> T<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">concept</span> is_destruct <span style="color:#f92672">=</span> <span style="color:#66d9ef">requires</span>(T t) { t.<span style="color:#f92672">~</span>T(); };
+</span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">X</span> {
-</span></span><span style="display:flex;"><span>    X() { puts(<span style="color:#e6db74">&#34;int&#34;</span>); }
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    X(<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> <span style="color:#f92672">&amp;</span>) { puts(<span style="color:#e6db74">&#34;const int&amp;&#34;</span>); }
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    X(<span style="color:#66d9ef">int</span> <span style="color:#f92672">&amp;&amp;</span>) { puts(<span style="color:#e6db74">&#34;int&amp;&amp;&#34;</span>); }
 </span></span><span style="display:flex;"><span>};
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>X <span style="color:#a6e22e">f</span>() {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> X();
-</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> argv[]) {
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// 拜伪析构函数调用所赐，所有标量类型都满足可析构 (Destructible) 的要求，
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#75715e">// 而数组类型和引用类型则不满足。
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>boolalpha <span style="color:#f92672">&lt;&lt;</span> is_destruct<span style="color:#f92672">&lt;</span>X<span style="color:#f92672">&gt;</span> <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
+</span></span><span style="display:flex;"><span>	std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>boolalpha <span style="color:#f92672">&lt;&lt;</span> is_destruct<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>argv[]) {
-</span></span><span style="display:flex;"><span>    X x1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;   <span style="color:#75715e">// int&amp;&amp;
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    puts(<span style="color:#e6db74">&#34;--------------&#34;</span>);
-</span></span><span style="display:flex;"><span>    X x2 <span style="color:#f92672">=</span> f(); <span style="color:#75715e">// int
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">using</span> type <span style="color:#f92672">=</span> <span style="color:#66d9ef">int</span>;
+</span></span><span style="display:flex;"><span>	type a <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>	a.<span style="color:#f92672">~</span>type();	<span style="color:#75715e">// 生存期结束
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> a <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;	<span style="color:#75715e">// 生存期外，存储期内
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
-</span></span></code></pre></div><p><a href="https://visualgmq.gitee.io/2021/07/10/C++%E7%A7%BB%E5%8A%A8%EF%BC%8CRVO%E5%92%8CNRVO/">[1]复制消除</a></p>
-
+</span></span></code></pre></div>
   </div>
 </section>
 <section id="tag-pane" class="meta">
@@ -114,13 +113,11 @@
 <section id="menu-pane" class="menu text-center">
   
   
-  <span><a class="menu-item" href="https://jia-baos.github.io/basical-skills/%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/">&lt; prev | </a></span>
+  <span><a class="menu-item" href="https://jia-baos.github.io/basical-skills/%E5%A4%8D%E5%88%B6%E6%B6%88%E9%99%A4/">&lt; prev | </a></span>
   
   
   <span><a class="menu-item" href="/Basical%20Skills">basical skills</a></span>
   
-  
-  <span><a class="menu-item" href="https://jia-baos.github.io/basical-skills/%E4%BC%AA%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0/"> | next &gt;</a></span>
   
   
   <h4 class="text-center"><a class="menu-item" href="https://jia-baos.github.io/">home</a></h4>

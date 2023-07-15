@@ -6,7 +6,16 @@
     <description>Recent content on Jia-Baos</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Sat, 15 Jul 2023 11:14:08 +0800</lastBuildDate><atom:link href="https://jia-baos.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 15 Jul 2023 12:21:10 +0800</lastBuildDate><atom:link href="https://jia-baos.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>伪析构函数</title>
+      <link>https://jia-baos.github.io/basical-skills/%E4%BC%AA%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0/</link>
+      <pubDate>Sat, 15 Jul 2023 12:21:10 +0800</pubDate>
+      
+      <guid>https://jia-baos.github.io/basical-skills/%E4%BC%AA%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0/</guid>
+      <description>#include &amp;lt;iostream&amp;gt; template&amp;lt;typename T&amp;gt; concept is_destruct = requires(T t) { t.~T(); }; struct X { }; int main(int argc, char* argv[]) { // 拜伪析构函数调用所赐，所有标量类型都满足可析构 (Destructible) 的要求， // 而数组类型和引用类型则不满足。 std::cout &amp;lt;&amp;lt; std::boolalpha &amp;lt;&amp;lt; is_destruct&amp;lt;X&amp;gt; &amp;lt;&amp;lt; std::endl; std::cout &amp;lt;&amp;lt; std::boolalpha &amp;lt;&amp;lt; is_destruct&amp;lt;int&amp;gt; &amp;lt;&amp;lt; std::endl; using type = int; type a = 1; a.~type();	// 生存期结束 std::cout &amp;lt;&amp;lt; a &amp;lt;&amp;lt; std::endl;	// 生存期外，存储期内 } </description>
+    </item>
+    
     <item>
       <title>复制消除</title>
       <link>https://jia-baos.github.io/basical-skills/%E5%A4%8D%E5%88%B6%E6%B6%88%E9%99%A4/</link>
