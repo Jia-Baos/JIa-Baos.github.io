@@ -7,6 +7,26 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language><atom:link href="https://jia-baos.github.io/tags/c/c++/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>形参包</title>
+      <link>https://jia-baos.github.io/basical-skills/%E5%BD%A2%E5%8F%82%E5%8C%85/</link>
+      <pubDate>Sat, 15 Jul 2023 16:49:48 +0800</pubDate>
+      
+      <guid>https://jia-baos.github.io/basical-skills/%E5%BD%A2%E5%8F%82%E5%8C%85/</guid>
+      <description>打印形参内容。
+#include &amp;lt;iostream&amp;gt; void print() {} template &amp;lt;typename T, typename...Types&amp;gt; void print(const T&amp;amp; firstArg, const Types&amp;amp;...args) { std::cout &amp;lt;&amp;lt; &amp;#34;偏特化&amp;#34; &amp;lt;&amp;lt; std::endl; std::cout &amp;lt;&amp;lt; &amp;#34;size: &amp;#34; &amp;lt;&amp;lt; sizeof...(args) + 1 &amp;lt;&amp;lt; std::endl; std::cout &amp;lt;&amp;lt; firstArg &amp;lt;&amp;lt; std::endl; // print() first argument print(args...); // call print() for remaining arguments } int main(int argc, char* argv[]) { print(1, 1.0, &amp;#39;123&amp;#39;); } </description>
+    </item>
+    
+    <item>
+      <title>异常中new对象</title>
+      <link>https://jia-baos.github.io/basical-skills/%E5%BC%82%E5%B8%B8%E4%B8%ADnew%E5%AF%B9%E8%B1%A1/</link>
+      <pubDate>Sat, 15 Jul 2023 16:10:41 +0800</pubDate>
+      
+      <guid>https://jia-baos.github.io/basical-skills/%E5%BC%82%E5%B8%B8%E4%B8%ADnew%E5%AF%B9%E8%B1%A1/</guid>
+      <description>MSVC下可通过编译，GCC报错。
+#include &amp;lt;iostream&amp;gt; #include &amp;lt;exception&amp;gt; struct MyException : std::exception { MyException(const char* s) : exception(s) { puts(&amp;#34;MyException()...&amp;#34;); } ~MyException() { puts(&amp;#34;~MyException()...&amp;#34;); } }; void f1() try { throw MyException(&amp;#34;MyException...&amp;#34;); } // 与其他临时对象不同，异常对象在初始化 catch 子句形参时被认为是左值， // 所以它可以用左值引用捕获、修改及重抛。 catch (std::exception&amp;amp; e) { std::cerr &amp;lt;&amp;lt; e.what() &amp;lt;&amp;lt; std::endl; } void f2() try { throw new MyException(&amp;#34;new MyException...&amp;#34;); } catch (std::exception* e) { std::cerr &amp;lt;&amp;lt; e-&amp;gt;what() &amp;lt;&amp;lt; std::endl; delete e; } int main(int argc, char* argv[]) { f1(); puts(&amp;#34;----------------&amp;#34;); f2(); } </description>
+    </item>
+    
+    <item>
       <title>伪析构函数</title>
       <link>https://jia-baos.github.io/basical-skills/%E4%BC%AA%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0/</link>
       <pubDate>Sat, 15 Jul 2023 12:21:10 +0800</pubDate>
@@ -77,7 +97,9 @@
       <guid>https://jia-baos.github.io/basical-skills/stl%E4%BB%BF%E5%87%BD%E6%95%B0/</guid>
       <description>函数对象（也称 函子）是实现 operator() 的任何类型。 此运算符被称为 调用运算符 （有时称为 应用程序运算符）。 C++ 标准库主要使用函数对象作为容器和算法内的排序条件。
 相对于直接函数调用，函数对象有两个优势。 第一个是函数对象可包含状态。 第二个是函数对象是一个类型，因此可用作模板参数。
-#include &amp;lt;bits/stdc++.h&amp;gt; class Functor { public: int operator()(int a, int b) { return a &amp;lt; b; } }; int main() { std::cout &amp;lt;&amp;lt; __cplusplus &amp;lt;&amp;lt; std::endl; Functor f; int a = 5; int b = 7; std::cout &amp;lt;&amp;lt; f(a, b) &amp;lt;&amp;lt; std::endl; // 1 return 0; } </description>
+#include &amp;lt;bits/stdc++.h&amp;gt; class Functor { public: int operator()(int a, int b) { return a &amp;lt; b; } }; int main() { std::cout &amp;lt;&amp;lt; __cplusplus &amp;lt;&amp;lt; std::endl; Functor f; int a = 5; int b = 7; std::cout &amp;lt;&amp;lt; f(a, b) &amp;lt;&amp;lt; std::endl; // 1 return 0; } 函数指针。
+不足：无法利用函数指针指向模板函数。
+#include &amp;lt;iostream&amp;gt; int cal(int val) { return val * val; } int main(int argc, char* argv[]) { // 函数指针定义方式 // 函数返回值类型 (* 指针变量名) (函数参数列表) int (*ptr_func)(int) = nullptr; ptr_func = cal; int val1 = cal(5); // 通过函数调用 int val2 = (*ptr_func)(5); // 通过指针调用，推荐 int val3 = ptr_func(5); // 不推荐 std::cout &amp;lt;&amp;lt; &amp;#34;val1 &amp;#34; &amp;lt;&amp;lt; val1 &amp;lt;&amp;lt; std::endl; std::cout &amp;lt;&amp;lt; &amp;#34;val2 &amp;#34; &amp;lt;&amp;lt; val2 &amp;lt;&amp;lt; std::endl; std::cout &amp;lt;&amp;lt; &amp;#34;val3 &amp;#34; &amp;lt;&amp;lt; val3 &amp;lt;&amp;lt; std::endl; } </description>
     </item>
     
     <item>
@@ -105,7 +127,7 @@
       <pubDate>Tue, 11 Jul 2023 22:42:52 +0800</pubDate>
       
       <guid>https://jia-baos.github.io/basical-skills/%E6%A6%82%E5%BF%B5%E5%92%8C%E7%BA%A6%E6%9D%9F/</guid>
-      <description>#include &amp;lt;iostream&amp;gt; #include &amp;lt;concepts&amp;gt; template&amp;lt;typename T&amp;gt; concept is_integral = std::is_integral_v&amp;lt;T&amp;gt;; template&amp;lt;typename T&amp;gt; requires is_integral&amp;lt;T&amp;gt; T add1(const T&amp;amp; t) { std::cout &amp;lt;&amp;lt; &amp;#34;用require关键字定义一个概念或约束&amp;#34; &amp;lt;&amp;lt; std::endl; return t + 1; } template&amp;lt;typename T&amp;gt; T add2(const T&amp;amp; t) requires is_integral&amp;lt;T&amp;gt; { std::cout &amp;lt;&amp;lt; &amp;#34;在函数签名中使用require关键字&amp;#34; &amp;lt;&amp;lt; std::endl; return t + 1; } template&amp;lt;is_integral T&amp;gt; T add3(const T&amp;amp; t) { std::cout &amp;lt;&amp;lt; &amp;#34;在模板声明中使用概念&amp;#34; &amp;lt;&amp;lt; std::endl; return t + 1; } auto add4(const is_integral auto&amp;amp; t) { std::cout &amp;lt;&amp;lt; &amp;#34;在参数列表中使用概念&amp;#34; &amp;lt;&amp;lt; std::endl; return t + 1; } // 经由返回类型启用 template&amp;lt;typename T&amp;gt; typename std::enable_if&amp;lt;std::is_integral&amp;lt;T&amp;gt;::value, int&amp;gt;::type add5(const T&amp;amp; arg) { std::cout &amp;lt;&amp;lt; &amp;#34;经由返回类型启用&amp;#34; &amp;lt;&amp;lt; std::endl; return arg + 1; } // 经由非类型模板形参启用 template&amp;lt;typename T, std::enable_if&amp;lt;std::is_integral&amp;lt;T&amp;gt;::value, int&amp;gt;::type = 0&amp;gt; T add6(const T&amp;amp; arg) { std::cout &amp;lt;&amp;lt; &amp;#34;经由非类型模板形参启用&amp;#34; &amp;lt;&amp;lt; std::endl; return arg + 1; } // 经由类型模板形参启用 template&amp;lt;typename T, typename = typename std::enable_if&amp;lt;std::is_integral&amp;lt;T&amp;gt;::value, int&amp;gt;::type&amp;gt; T add7(const T&amp;amp; arg) { std::cout &amp;lt;&amp;lt; &amp;#34;经由类型模板形参启用&amp;#34; &amp;lt;&amp;lt; std::endl; return arg + 1; } int main(int argc, char* argv[]) { std::cout &amp;lt;&amp;lt; add1(1) &amp;lt;&amp;lt; std::endl; std::cout &amp;lt;&amp;lt; add2(1) &amp;lt;&amp;lt; std::endl; std::cout &amp;lt;&amp;lt; add3(1) &amp;lt;&amp;lt; std::endl; std::cout &amp;lt;&amp;lt; add4(1) &amp;lt;&amp;lt; std::endl; std::cout &amp;lt;&amp;lt; add5(1) &amp;lt;&amp;lt; std::endl; std::cout &amp;lt;&amp;lt; add6(1) &amp;lt;&amp;lt; std::endl; std::cout &amp;lt;&amp;lt; add7(1) &amp;lt;&amp;lt; std::endl; } </description>
+      <description>#include &amp;lt;iostream&amp;gt; #include &amp;lt;concepts&amp;gt; template&amp;lt;typename T&amp;gt; concept is_integral = std::is_integral_v&amp;lt;T&amp;gt;; // requires 子句，不是 requires 表达式 template&amp;lt;typename T&amp;gt; requires is_integral&amp;lt;T&amp;gt; T add0(const T&amp;amp; t) { std::cout &amp;lt;&amp;lt; &amp;#34;用require关键字定义一个概念或约束，requires子句&amp;#34; &amp;lt;&amp;lt; std::endl; return t + 1; } // 临时约束，注意关键字用了两次 template&amp;lt;typename T&amp;gt; requires requires (T t) { std::is_integral_v&amp;lt;T&amp;gt;; } T add1(const T&amp;amp; t) { std::cout &amp;lt;&amp;lt; &amp;#34;用require关键字定义一个概念或约束，requires表达式，临时约束&amp;#34; &amp;lt;&amp;lt; std::endl; return t + 1; } template&amp;lt;typename T&amp;gt; T add2(const T&amp;amp; t) requires is_integral&amp;lt;T&amp;gt; { std::cout &amp;lt;&amp;lt; &amp;#34;在函数签名中使用require关键字&amp;#34; &amp;lt;&amp;lt; std::endl; return t + 1; } template&amp;lt;is_integral T&amp;gt; T add3(const T&amp;amp; t) { std::cout &amp;lt;&amp;lt; &amp;#34;在模板声明中使用概念&amp;#34; &amp;lt;&amp;lt; std::endl; return t + 1; } auto add4(const is_integral auto&amp;amp; t) { std::cout &amp;lt;&amp;lt; &amp;#34;在参数列表中使用概念&amp;#34; &amp;lt;&amp;lt; std::endl; return t + 1; } // 经由返回类型启用 template&amp;lt;typename T&amp;gt; typename std::enable_if&amp;lt;std::is_integral&amp;lt;T&amp;gt;::value, int&amp;gt;::type add5(const T&amp;amp; arg) { std::cout &amp;lt;&amp;lt; &amp;#34;经由返回类型启用&amp;#34; &amp;lt;&amp;lt; std::endl; return arg + 1; } // 经由非类型模板形参启用 template&amp;lt;typename T, std::enable_if&amp;lt;std::is_integral&amp;lt;T&amp;gt;::value, int&amp;gt;::type = 0&amp;gt; T add6(const T&amp;amp; arg) { std::cout &amp;lt;&amp;lt; &amp;#34;经由非类型模板形参启用&amp;#34; &amp;lt;&amp;lt; std::endl; return arg + 1; } // 经由类型模板形参启用 template&amp;lt;typename T, typename = typename std::enable_if&amp;lt;std::is_integral&amp;lt;T&amp;gt;::value, int&amp;gt;::type&amp;gt; T add7(const T&amp;amp; arg) { std::cout &amp;lt;&amp;lt; &amp;#34;经由类型模板形参启用&amp;#34; &amp;lt;&amp;lt; std::endl; return arg + 1; } int main(int argc, char* argv[]) { std::cout &amp;lt;&amp;lt; add0(1) &amp;lt;&amp;lt; std::endl; std::cout &amp;lt;&amp;lt; add1(1) &amp;lt;&amp;lt; std::endl; std::cout &amp;lt;&amp;lt; add2(1) &amp;lt;&amp;lt; std::endl; std::cout &amp;lt;&amp;lt; add3(1) &amp;lt;&amp;lt; std::endl; std::cout &amp;lt;&amp;lt; add4(1) &amp;lt;&amp;lt; std::endl; std::cout &amp;lt;&amp;lt; add5(1) &amp;lt;&amp;lt; std::endl; std::cout &amp;lt;&amp;lt; add6(1) &amp;lt;&amp;lt; std::endl; std::cout &amp;lt;&amp;lt; add7(1) &amp;lt;&amp;lt; std::endl; } </description>
     </item>
     
     <item>
@@ -115,7 +137,7 @@
       
       <guid>https://jia-baos.github.io/basical-skills/traits%E7%89%B9%E6%80%A7/</guid>
       <description>Think of a trait as a small object whose main purpose is to carry information used by another object or algorithm to determine “policy” or “implementation details”. - Bjarne Stroustrup
-模板的全特化、偏特化
+模板的全特化、偏特化。
 #include &amp;lt;bits/stdc++.h&amp;gt; // 模板一般化设计 /* * 模板全特化和偏特化设计版本存在时， * 优点调用 */ template &amp;lt;typename T&amp;gt; struct MyPrint { void print() { std::cout &amp;lt;&amp;lt; &amp;#34;模板一般化设计&amp;#34; &amp;lt;&amp;lt; std::endl; } }; // 模板全特化设计 template &amp;lt;&amp;gt; struct MyPrint&amp;lt;float&amp;gt; { void print() { std::cout &amp;lt;&amp;lt; &amp;#34;模板全特化设计&amp;#34; &amp;lt;&amp;lt; std::endl; } }; // 模板偏特化设计 /* *模板特化时，可以只指定一部分而非所有模板参数， *或者是参数的一部分而非全部特性，这叫做模板的偏特化。 *一个类模板的偏特化本身是一个模板， *使用它时用户还必须为那些在特例化版本中未指定的模板参数提供实参。 */ template &amp;lt;typename T&amp;gt; struct MyPrint&amp;lt;T *&amp;gt; { void print() { std::cout &amp;lt;&amp;lt; &amp;#34;模板偏特化设计&amp;#34; &amp;lt;&amp;lt; std::endl; } }; int main(int argc, char *argv[]) { MyPrint&amp;lt;int&amp;gt; a; MyPrint&amp;lt;float&amp;gt; b; MyPrint&amp;lt;float *&amp;gt; c; a.</description>
     </item>
     

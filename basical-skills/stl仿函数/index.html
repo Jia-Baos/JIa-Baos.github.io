@@ -87,6 +87,28 @@
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 </span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>函数指针。</p>
+<p>不足：无法利用函数指针指向模板函数。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">cal</span>(<span style="color:#66d9ef">int</span> val) {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> val <span style="color:#f92672">*</span> val;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> argv[]) {
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// 函数指针定义方式
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#75715e">// 函数返回值类型 (* 指针变量名) (函数参数列表)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">int</span> (<span style="color:#f92672">*</span>ptr_func)(<span style="color:#66d9ef">int</span>) <span style="color:#f92672">=</span> <span style="color:#66d9ef">nullptr</span>;
+</span></span><span style="display:flex;"><span>	ptr_func <span style="color:#f92672">=</span> cal;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> val1 <span style="color:#f92672">=</span> cal(<span style="color:#ae81ff">5</span>);  <span style="color:#75715e">// 通过函数调用
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">int</span> val2 <span style="color:#f92672">=</span> (<span style="color:#f92672">*</span>ptr_func)(<span style="color:#ae81ff">5</span>);  <span style="color:#75715e">// 通过指针调用，推荐
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">int</span> val3 <span style="color:#f92672">=</span> ptr_func(<span style="color:#ae81ff">5</span>); <span style="color:#75715e">// 不推荐
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>	std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;val1 &#34;</span> <span style="color:#f92672">&lt;&lt;</span> val1 <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
+</span></span><span style="display:flex;"><span>	std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;val2 &#34;</span> <span style="color:#f92672">&lt;&lt;</span> val2 <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
+</span></span><span style="display:flex;"><span>	std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#e6db74">&#34;val3 &#34;</span> <span style="color:#f92672">&lt;&lt;</span> val3 <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div>
   </div>
 </section>
