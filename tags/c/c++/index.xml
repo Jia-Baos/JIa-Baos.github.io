@@ -17,13 +17,13 @@
     </item>
     
     <item>
-      <title>形参包</title>
-      <link>https://jia-baos.github.io/basical-skills/%E5%BD%A2%E5%8F%82%E5%8C%85/</link>
+      <title>形参包解析</title>
+      <link>https://jia-baos.github.io/basical-skills/%E5%BD%A2%E5%8F%82%E5%8C%85%E8%A7%A3%E6%9E%90/</link>
       <pubDate>Sat, 15 Jul 2023 16:49:48 +0800</pubDate>
       
-      <guid>https://jia-baos.github.io/basical-skills/%E5%BD%A2%E5%8F%82%E5%8C%85/</guid>
-      <description>打印形参内容。
-#include &amp;lt;iostream&amp;gt; void print() {} template &amp;lt;typename T, typename...Types&amp;gt; void print(const T&amp;amp; firstArg, const Types&amp;amp;...args) { std::cout &amp;lt;&amp;lt; &amp;#34;偏特化&amp;#34; &amp;lt;&amp;lt; std::endl; std::cout &amp;lt;&amp;lt; &amp;#34;size: &amp;#34; &amp;lt;&amp;lt; sizeof...(args) + 1 &amp;lt;&amp;lt; std::endl; std::cout &amp;lt;&amp;lt; firstArg &amp;lt;&amp;lt; std::endl; // print() first argument print(args...); // call print() for remaining arguments } int main(int argc, char* argv[]) { print(1, 1.0, &amp;#39;123&amp;#39;); } </description>
+      <guid>https://jia-baos.github.io/basical-skills/%E5%BD%A2%E5%8F%82%E5%8C%85%E8%A7%A3%E6%9E%90/</guid>
+      <description>形参包的解析可以有两种方式：
+递归 折叠表达式 #include &amp;lt;iostream&amp;gt; template&amp;lt;int...args&amp;gt; constexpr int test1 = (args - ...); template&amp;lt;int...args&amp;gt; constexpr int test2 = (... - args); // 递归终止 void print1() {} template &amp;lt;typename T, typename...Types&amp;gt; void print1(const T&amp;amp; firstArg, const Types&amp;amp;...args) { std::cout &amp;lt;&amp;lt; firstArg &amp;lt;&amp;lt; std::endl; // print() first argument print1(args...); // call print() for remaining arguments } // 二元折叠表达式 template&amp;lt;typename...Args&amp;gt; void print2(Args&amp;amp;&amp;amp;...args) { (std::cout &amp;lt;&amp;lt; ... &amp;lt;&amp;lt; args) &amp;lt;&amp;lt; std::endl; } // 一元右折叠表达式+逗号表达式 template&amp;lt;typename.</description>
     </item>
     
     <item>
