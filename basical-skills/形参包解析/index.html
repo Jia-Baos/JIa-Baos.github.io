@@ -114,6 +114,18 @@
 </span></span><span style="display:flex;"><span>	print2(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2.0f</span>, <span style="color:#ae81ff">3.0</span>);
 </span></span><span style="display:flex;"><span>	print3(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2.0f</span>, <span style="color:#ae81ff">3.0</span>);
 </span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>二元折叠表达式求和</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typename</span> T, <span style="color:#66d9ef">typename</span>...Args<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> mysum(T<span style="color:#f92672">&amp;&amp;</span> firstArg, Args<span style="color:#f92672">&amp;&amp;</span>...restArg) {
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> (firstArg <span style="color:#f92672">+</span> ... <span style="color:#f92672">+</span> restArg);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> argv[])
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> mysum(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>) <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;	<span style="color:#75715e">//15
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
 </span></span></code></pre></div>
   </div>
 </section>
