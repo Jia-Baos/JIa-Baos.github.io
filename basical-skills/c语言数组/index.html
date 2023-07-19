@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<meta name="description" content="Simple minimalist theme">
+<meta name="keywords" content="minimalist,blog,goa,hugo,developer">
+
+<title>
+  Jia-Baos - C语言数组 
+</title>
+
+<meta name="generator" content="Hugo 0.111.3">
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Roboto+Slab:wght@400;700&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+<link rel="stylesheet" href="https://jia-baos.github.io/css/main.css">
+<link rel="stylesheet" href="https://jia-baos.github.io/css/custom.css">
+
+
+
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="theme-color" content="#ffffff">
+
+</head>
+<body lang="en-US">
+<div class="container">
+
+
+<header class="text-left title">
+  <h1 class="title">C语言数组</h1>
+</header>
+<section id="category-pane" class="meta">
+  
+  <div class="col-md-12">
+    <h6 class="text-left meta">
+        PUBLISHED ON JUL 19, 2023 
+       / 2 MIN READ
+      
+      
+      
+      —
+      
+      
+      <a class="meta" href="/categories/articles">ARTICLES</a>
+      
+      
+      
+    </h6>
+  </div>
+  
+</section>
+<section id="content-pane" class="">
+  <div class="col-md-12 text-justify content">
+    
+    <p>仅在以下3种情况中，数组不会退化成指针</p>
+<ul>
+<li>使用<code>sizeof(a)</code>的时候；</li>
+<li>对数组名取地址操作：<code>&amp;a</code>。<code>&amp;a</code>的类型为pointer to array of 6 chars；</li>
+<li>使用字符串初始化数组的时候也不会退化。</li>
+</ul>
+<p>其它情况都会退化成“指向数组首元素的指针”</p>
+<ul>
+<li>数组名做函数参数时，a都会退化成&amp;a[0]指针；</li>
+<li>二维数组，char s[10][8]数组的首元素（得理解这个首元素，从一维数组的角度看的）是一维数组s[0]，因此退化成&amp;s[0]指针。</li>
+</ul>
+<p>数组定义字符串和指针定义字符串的区别</p>
+<ul>
+<li>使用数字定义的字符串只分配字符串所需的空间，数字名没有单独的存储空间；使用指针定义字符串，除了字符串占用的空间，还要为指针变量分配对应的空间。</li>
+<li>数组退化成指针为“指针常量”，不可更改，而直接指向字符串的指针可修改。</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-C++" data-lang="C++"><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;iostream&gt;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">mysize</span>(<span style="color:#66d9ef">int</span> arr[] )
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">sizeof</span>(arr);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(<span style="color:#66d9ef">int</span> argc, <span style="color:#66d9ef">char</span><span style="color:#f92672">*</span> argv[])
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span> arr1[<span style="color:#ae81ff">10</span>]{ <span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">6</span>,<span style="color:#ae81ff">7</span>,<span style="color:#ae81ff">8</span>,<span style="color:#ae81ff">9</span> };
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">using</span> type1 <span style="color:#f92672">=</span> <span style="color:#66d9ef">decltype</span>(arr1);	<span style="color:#75715e">// int [10]
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">using</span> type2 <span style="color:#f92672">=</span> <span style="color:#66d9ef">decltype</span>(arr1[<span style="color:#ae81ff">0</span>]);	<span style="color:#75715e">// int &amp;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">using</span> type3 <span style="color:#f92672">=</span> <span style="color:#66d9ef">decltype</span>(<span style="color:#f92672">&amp;</span>arr1[<span style="color:#ae81ff">0</span>]);	<span style="color:#75715e">// int *
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span><span style="color:#f92672">*</span> ptr1 <span style="color:#f92672">=</span> arr1;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">int</span><span style="color:#f92672">*</span> ptr2 <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span>arr1[<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	puts(<span style="color:#e6db74">&#34;----------------&#34;</span>);
+</span></span><span style="display:flex;"><span>	std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#66d9ef">sizeof</span>(arr1) <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;	<span style="color:#75715e">// 40
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> mysize(arr1) <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;	<span style="color:#75715e">// 8
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#66d9ef">sizeof</span>(ptr1) <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;	<span style="color:#75715e">// 8
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#66d9ef">sizeof</span>(ptr2) <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;	<span style="color:#75715e">// 8
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>	puts(<span style="color:#e6db74">&#34;----------------&#34;</span>);
+</span></span><span style="display:flex;"><span>	std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#f92672">*</span>ptr1<span style="color:#f92672">++</span> <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;	<span style="color:#75715e">// 0
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#f92672">*</span>ptr1 <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;	<span style="color:#75715e">// 1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#f92672">*</span>ptr2<span style="color:#f92672">++</span> <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;	<span style="color:#75715e">// 0
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> <span style="color:#f92672">*</span>ptr2 <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;	<span style="color:#75715e">// 1
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	puts(<span style="color:#e6db74">&#34;----------------&#34;</span>);
+</span></span><span style="display:flex;"><span>	type1 arr2 <span style="color:#f92672">=</span> { <span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span> };	<span style="color:#75715e">// 
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#66d9ef">for</span> (rsize_t i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">10</span>; i<span style="color:#f92672">++</span>)
+</span></span><span style="display:flex;"><span>	{
+</span></span><span style="display:flex;"><span>		std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> arr2[i] <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+  </div>
+</section>
+<section id="tag-pane" class="meta">
+  
+  <div class="col-md-12">
+    <h6 class="text-right meta">
+      
+      
+      
+      TAGS:
+      
+      
+      <a class="meta" href="/tags/c/c&#43;&#43;">C/C&#43;&#43;</a>
+      
+      
+      
+    </h6>
+  </div>
+  
+</section>
+
+
+
+
+<section id="menu-pane" class="menu text-center">
+  
+  
+  <span><a class="menu-item" href="https://jia-baos.github.io/basical-skills/%E5%A4%A7%E5%B0%8F%E7%AB%AF%E5%88%A4%E6%96%AD/">&lt; prev | </a></span>
+  
+  
+  <span><a class="menu-item" href="/Basical%20Skills">basical skills</a></span>
+  
+  
+  
+  <h4 class="text-center"><a class="menu-item" href="https://jia-baos.github.io/">home</a></h4>
+</section>
+
+
+
+<footer class="text-center footer">
+  <hr />
+  
+  <h6 class="text-center copyright">© 2016. Jia-Baos. <a href="http://creativecommons.org/licenses/by/3.0/">Some Rights Reserved</a>.</h6>
+  
+  <h6 class="text-center powered">Powered by <a href="https://gohugo.io/">Hugo  v0.111.3</a> &amp; <a href="https://github.com/shenoybr/hugo-goa">Goa</a>.</h6>
+  
+      
+      <h6><a href="" aria-label="RSS Feed"><i class="fas fa-rss" aria-hidden="true"></i></a></h6>
+    
+  
+</footer>
+
+</div>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  
+
+<script type="text/javascript">
+hljs.initHighlightingOnLoad();
+</script>
+
+
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'XYZ', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="/js/main.js"></script>
+<script src="/js/custom.js"></script>
+</body>
+</html>
+
+
