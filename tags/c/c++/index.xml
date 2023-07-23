@@ -7,6 +7,15 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language><atom:link href="https://jia-baos.github.io/tags/c/c++/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>C&#43;&#43;20管道运算符</title>
+      <link>https://jia-baos.github.io/basical-skills/c&#43;&#43;20%E7%AE%A1%E9%81%93%E8%BF%90%E7%AE%97%E7%AC%A6/</link>
+      <pubDate>Sun, 23 Jul 2023 18:56:50 +0800</pubDate>
+      
+      <guid>https://jia-baos.github.io/basical-skills/c&#43;&#43;20%E7%AE%A1%E9%81%93%E8%BF%90%E7%AE%97%E7%AC%A6/</guid>
+      <description>#include &amp;lt;iostream&amp;gt; #include &amp;lt;ranges&amp;gt; int main() { auto const ints = { 0,1,2,3,4,5 }; auto even = [](int i) { return 0 == i % 2; }; auto square = [](int i) { return i * i; }; // 组合视图的“管道”语法： for (int i : ints | std::views::filter(even) | std::views::transform(square)) { std::cout &amp;lt;&amp;lt; i &amp;lt;&amp;lt; &amp;#39; &amp;#39;; } std::cout &amp;lt;&amp;lt; std::endl; // 传统的“函数式”组合语法,filter是筛选，然后再用transform筛选 for (int i : std::views::transform(std::views::filter(ints, even), square)) { std::cout &amp;lt;&amp;lt; i &amp;lt;&amp;lt; &amp;#39; &amp;#39;; } std::cout &amp;lt;&amp;lt; std::endl; auto f = std::views::transform([](int n) { return n *= n; }); auto ret = ints | f;//并没有改变ints，只是返回一个序列 for (auto i : ret) { std::cout &amp;lt;&amp;lt; i &amp;lt;&amp;lt; &amp;#39; &amp;#39;; } } 运算符重载实现管道运算符</description>
+    </item>
+    
+    <item>
       <title>C语言数组</title>
       <link>https://jia-baos.github.io/basical-skills/c%E8%AF%AD%E8%A8%80%E6%95%B0%E7%BB%84/</link>
       <pubDate>Wed, 19 Jul 2023 12:43:20 +0800</pubDate>
