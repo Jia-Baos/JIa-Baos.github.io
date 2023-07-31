@@ -6,7 +6,16 @@
     <description>Recent content in articles on Jia-Baos</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Mon, 31 Jul 2023 15:24:37 +0800</lastBuildDate><atom:link href="https://jia-baos.github.io/categories/articles/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 31 Jul 2023 16:02:34 +0800</lastBuildDate><atom:link href="https://jia-baos.github.io/categories/articles/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>array new/delete</title>
+      <link>https://jia-baos.github.io/basical-skills/array-new/</link>
+      <pubDate>Mon, 31 Jul 2023 16:02:34 +0800</pubDate>
+      
+      <guid>https://jia-baos.github.io/basical-skills/array-new/</guid>
+      <description>#include &amp;lt;iostream&amp;gt; class A { public: int id_; A() :id_(0) { std::cout &amp;lt;&amp;lt; &amp;#34;default Ctor.this = &amp;#34; &amp;lt;&amp;lt; this &amp;lt;&amp;lt; &amp;#34; id = &amp;#34; &amp;lt;&amp;lt; id_ &amp;lt;&amp;lt; std::endl; }; A(int id) :id_(id) { std::cout &amp;lt;&amp;lt; &amp;#34;Ctor.this = &amp;#34; &amp;lt;&amp;lt; this &amp;lt;&amp;lt; &amp;#34; id = &amp;#34; &amp;lt;&amp;lt; id_ &amp;lt;&amp;lt; std::endl; }; ~A() { std::cout &amp;lt;&amp;lt; &amp;#34;Dtor.this = &amp;#34; &amp;lt;&amp;lt; this &amp;lt;&amp;lt; &amp;#34; id = &amp;#34; &amp;lt;&amp;lt; id_ &amp;lt;&amp;lt; std::endl; }; }; int main() { std::cout &amp;lt;&amp;lt; _MSVC_LANG &amp;lt;&amp;lt; std::endl; size_t size = 3; // default Ctor调用三次，[0]先于[1]先于[2] // A必须有 default Ctor，否则[Error] no matching function for call to &amp;#39;A::A()&amp;#39; A* buf = new A[size]; A* tmp = buf; std::cout &amp;lt;&amp;lt; &amp;#34;buf=&amp;#34; &amp;lt;&amp;lt; buf &amp;lt;&amp;lt; &amp;#34; tmp=&amp;#34; &amp;lt;&amp;lt; tmp &amp;lt;&amp;lt; std::endl; for (size_t i = 0; i &amp;lt; 3; ++i) { // Ctor3次 new(tmp++)A(i); } std::cout &amp;lt;&amp;lt; &amp;#34;buf=&amp;#34; &amp;lt;&amp;lt; buf &amp;lt;&amp;lt; &amp;#34; tmp=&amp;#34; &amp;lt;&amp;lt; tmp &amp;lt;&amp;lt; std::endl; // Dtor3次（次序逆反），[2]先于[1]先于[0] // Dtor被唤起时，this指向不同的object delete[] buf; } </description>
+    </item>
+    
     <item>
       <title>new和operator new</title>
       <link>https://jia-baos.github.io/basical-skills/new%E5%92%8Coperator-new/</link>
