@@ -6,7 +6,16 @@
     <description>Recent content in articles on Jia-Baos</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Mon, 31 Jul 2023 16:02:34 +0800</lastBuildDate><atom:link href="https://jia-baos.github.io/categories/articles/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 31 Jul 2023 21:39:19 +0800</lastBuildDate><atom:link href="https://jia-baos.github.io/categories/articles/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>哈希表实现</title>
+      <link>https://jia-baos.github.io/basical-skills/%E5%93%88%E5%B8%8C%E8%A1%A8%E5%AE%9E%E7%8E%B0/</link>
+      <pubDate>Mon, 31 Jul 2023 21:39:19 +0800</pubDate>
+      
+      <guid>https://jia-baos.github.io/basical-skills/%E5%93%88%E5%B8%8C%E8%A1%A8%E5%AE%9E%E7%8E%B0/</guid>
+      <description>#include &amp;lt;iostream&amp;gt; #include &amp;lt;vector&amp;gt; #include &amp;lt;list&amp;gt; #include &amp;lt;random&amp;gt; const int hashsize = 12; // 定义结点结构体 template&amp;lt;typename T, typename U&amp;gt; struct HashNode { T key_; U val_; }; // 使用拉链法实现哈希表类 template&amp;lt;typename T, typename U&amp;gt; class HashTable { private: std::vector&amp;lt;std::list&amp;lt;HashNode&amp;lt;T, U&amp;gt;&amp;gt;&amp;gt; vec;	// 存储结点 public: HashTable() :vec(hashsize) {} ~HashTable() {}; // 哈希函数（除留取余） int hash(const T&amp;amp; key) { { return key % 13; } } // 哈希查找 bool hashFind(const T&amp;amp; key) { int index = hash(key); for (auto iter = vec[index].</description>
+    </item>
+    
     <item>
       <title>array new/delete</title>
       <link>https://jia-baos.github.io/basical-skills/array-new/</link>
