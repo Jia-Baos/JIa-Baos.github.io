@@ -31,11 +31,13 @@
       <pubDate>Mon, 31 Jul 2023 15:24:37 +0800</pubDate>
       
       <guid>https://jia-baos.github.io/basical-skills/new%E5%92%8Coperator-new/</guid>
-      <description>new和operator new new：指我们在C++里通常用到的运算符，比如A* a = new A; 对于new来说，有new和::new之分，前者位于std命名空间； operator new：指对new的重载形式，它是一个函数，并不是运算符。 对于operator new来说，分为全局重载和类重载，全局重载是void* ::operator new(size_t size)，在类中重载形式 void* A::operator new(size_t size)。事实上系统默认的全局::operator new(size_t size)也只是调用malloc分配内存，并且返回一个void*指针。而构造函数的调用(如果需要)是在new运算符中完成的。 new和operator new的关系 对于：
-A* a = new A(); 其可以分为两步： 1.分配内存，2.调用A()构造对象。
-事实上，分配内存这一操作就是由operator new(size_t)来完成的，如果类A重载了operator new，那么将调用A::operator new(size_t )，如果没有重载，就调用::operator new(size_t )，全局new操作符由C++默认提供。 因此前面的两步也就是：1.调用operator new 2.调用构造函数。
-new ：不能被重载，其行为总是一致的。它先调用operator new分配内存，然后调用构造函数初始化那段内存。new 操作符的执行过程：
-调用operator new分配内存 ； 调用构造函数生成类对象； 返回相应指针。 operator new：要实现不同的内存分配行为，应该重载operator new，而不是new; operator new就像operator + 一样，是可以重载的。同理，operator new[]、operator delete、operator delete[]也是可以重载的。</description>
+      <description>new new是C++中的关键字，其行为总是一致的，先调用operator new分配内存，然后调用构造函数初始化那段内存；
+operator new operator new是一个函数，就像重载任何一个符号如operator +，它用来分配内存（只不过new除了调用它还有其他步骤）。它可以被重载，通过重载它，可以改变new操作符的功能。它的功能介意类比c语言中的malloc，如果类中没有重载operator new，那么调用的就是全局的::operator new来从堆中分配内存。
+如果想重载operator new需要注意以下几点：
+重载时，返回类型必须声明为void*； 重载时，第一个参数类型必须为表达要求分配空间的大小（字节），类型为size_t； 重载时，可以带其它参数； 分配函数为类成员函数或全局函数，如果分配函数在全局范围之外的名称空间范围中声明，或者在全局范围中声明为静态，则程序是病态的； placement new placement new 是c++中对operator new 的一个标准、全局的重载版本。它并不分配内存，只是返回指向已经分配好的某段内存的一个指针，placement new允许你在一个已经分配好的内存中（栈或者堆中）构造一个新的对象。
+此外，placement new不可以被重载。
+placement new的使用步骤如下：
+分配内存 char* buff = new char[ sizeof(Foo) * N ]; memset( buff, 0, sizeof(Foo)*N ); 构建对象 Foo* pfoo = new (buff)Foo; 使用对象 pfoo-&amp;gt;print(); pfoo-&amp;gt;set_f(1.0f); pfoo-&amp;gt;get_f(); 析构对象，显式的调用类的析构函数。 pfoo-&amp;gt;~Foo(); 销毁内存 delete [] buff; #include &amp;lt;iostream&amp;gt; // 重载全局的operator new void* operator new(size_t size) { std::cout &amp;lt;&amp;lt; &amp;#34;::operator new, size = &amp;#34; &amp;lt;&amp;lt; size &amp;lt;&amp;lt; std::endl; return malloc(size);; }; void operator delete(void* pdead, size_t size) { std::cout &amp;lt;&amp;lt; &amp;#34;::operator delete, pdead = &amp;#34; &amp;lt;&amp;lt; pdead &amp;lt;&amp;lt; &amp;#34; size = &amp;#34; &amp;lt;&amp;lt; size &amp;lt;&amp;lt; std::endl; free(pdead); } void* operator new[](size_t size) { std::cout &amp;lt;&amp;lt; &amp;#34;::operator new[], size = &amp;#34; &amp;lt;&amp;lt; size &amp;lt;&amp;lt; std::endl; return malloc(size);; }; void operator delete[](void* pdead, size_t size) { std::cout &amp;lt;&amp;lt; &amp;#34;::operator delete[], pdead = &amp;#34; &amp;lt;&amp;lt; pdead &amp;lt;&amp;lt; &amp;#34; size = &amp;#34; &amp;lt;&amp;lt; size &amp;lt;&amp;lt; std::endl; free(pdead); } class Foo { public: int id_; double data_; public: Foo() : id_(0) { std::cout &amp;lt;&amp;lt; &amp;#34;default Ctor.</description>
     </item>
     
     <item>
