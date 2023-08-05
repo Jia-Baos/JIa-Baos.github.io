@@ -6,7 +6,16 @@
     <description>Recent content on Jia-Baos</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Tue, 01 Aug 2023 09:25:11 +0800</lastBuildDate><atom:link href="https://jia-baos.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 05 Aug 2023 10:28:01 +0800</lastBuildDate><atom:link href="https://jia-baos.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>C语言字符串数组</title>
+      <link>https://jia-baos.github.io/basical-skills/c%E8%AF%AD%E8%A8%80%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%95%B0%E7%BB%84/</link>
+      <pubDate>Sat, 05 Aug 2023 10:28:01 +0800</pubDate>
+      
+      <guid>https://jia-baos.github.io/basical-skills/c%E8%AF%AD%E8%A8%80%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%95%B0%E7%BB%84/</guid>
+      <description>#include &amp;lt;bits/stdc++.h&amp;gt; int main() { char str1[] = &amp;#34;abc&amp;#34;; char str2[] = &amp;#34;abc&amp;#34;; const char str3[] = &amp;#34;abc&amp;#34;; const char str4[] = &amp;#34;abc&amp;#34;; const char *str5 = &amp;#34;abc&amp;#34;; const char *str6 = &amp;#34;abc&amp;#34;; char *str7 = &amp;#34;abc&amp;#34;; char *str8 = &amp;#34;abc&amp;#34;; // 因地址向下增长，所以内存均开辟在栈上 std::cout &amp;lt;&amp;lt; &amp;#34;str1&amp;#39;s Address: &amp;#34; &amp;lt;&amp;lt; &amp;amp;str1 &amp;lt;&amp;lt; std::endl; std::cout &amp;lt;&amp;lt; &amp;#34;str2&amp;#39;s Address: &amp;#34; &amp;lt;&amp;lt; &amp;amp;str2 &amp;lt;&amp;lt; std::endl; std::cout &amp;lt;&amp;lt; &amp;#34;str3&amp;#39;s Address: &amp;#34; &amp;lt;&amp;lt; &amp;amp;str3 &amp;lt;&amp;lt; std::endl; std::cout &amp;lt;&amp;lt; &amp;#34;str4&amp;#39;s Address: &amp;#34; &amp;lt;&amp;lt; &amp;amp;str4 &amp;lt;&amp;lt; std::endl; // 字符串变量比较不能直接用==，但是可以用变量地址和字符串用==比较，如果地址相同，字符串会相等 std::cout &amp;lt;&amp;lt; std::boolalpha &amp;lt;&amp;lt; (str1 == str2) &amp;lt;&amp;lt; std::endl; std::cout &amp;lt;&amp;lt; std::boolalpha &amp;lt;&amp;lt; (str3 == str4) &amp;lt;&amp;lt; std::endl; // 字符串变量比较的正确方式 if (strcmp(str1, str2) == 0) { std::cout &amp;lt;&amp;lt; &amp;#34;str1 == str2&amp;#34; &amp;lt;&amp;lt; std::endl; } // str5、str6、str7和str8指向常量存储区的同一块内存 // 所以其相等 std::cout &amp;lt;&amp;lt; std::boolalpha &amp;lt;&amp;lt; (str5 == str6) &amp;lt;&amp;lt; std::endl; std::cout &amp;lt;&amp;lt; std::boolalpha &amp;lt;&amp;lt; (str7 == str8) &amp;lt;&amp;lt; std::endl; std::cout &amp;lt;&amp;lt; std::boolalpha &amp;lt;&amp;lt; (str5 == str7) &amp;lt;&amp;lt; std::endl; std::cout &amp;lt;&amp;lt; std::boolalpha &amp;lt;&amp;lt; (str6 == str8) &amp;lt;&amp;lt; std::endl; } </description>
+    </item>
+    
     <item>
       <title>堆和栈的判断</title>
       <link>https://jia-baos.github.io/basical-skills/%E5%A0%86%E5%92%8C%E6%A0%88%E7%9A%84%E5%88%A4%E6%96%AD/</link>
