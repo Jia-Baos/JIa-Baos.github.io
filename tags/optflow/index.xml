@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>optflow on Jia-Baos</title>
-    <link>https://jia-baos.github.io/tags/optflow/</link>
+    <link>uildDrafts/tags/optflow/</link>
     <description>Recent content in optflow on Jia-Baos</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Thu, 20 Apr 2023 17:04:11 +0800</lastBuildDate><atom:link href="https://jia-baos.github.io/tags/optflow/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 20 Apr 2023 17:04:11 +0800</lastBuildDate><atom:link href="uildDrafts/tags/optflow/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>光流估计</title>
-      <link>https://jia-baos.github.io/recent-works/%E5%85%89%E6%B5%81%E4%BC%B0%E8%AE%A1/</link>
+      <link>uildDrafts/recent-works/%E5%85%89%E6%B5%81%E4%BC%B0%E8%AE%A1/</link>
       <pubDate>Thu, 20 Apr 2023 17:04:11 +0800</pubDate>
       
-      <guid>https://jia-baos.github.io/recent-works/%E5%85%89%E6%B5%81%E4%BC%B0%E8%AE%A1/</guid>
+      <guid>uildDrafts/recent-works/%E5%85%89%E6%B5%81%E4%BC%B0%E8%AE%A1/</guid>
       <description>Notes: Here is a link to my Github homepage, Jia-Baos.
 There are many excellent works about optical flow estimation, which is closely related to our research.
 Matching methods: AKAZE, DeepMatching, CPM.
