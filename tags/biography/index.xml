@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>biography on Jia-Baos</title>
-    <link>uildDrafts/tags/biography/</link>
+    <link>https://jia-baos.github.io/tags/biography/</link>
     <description>Recent content in biography on Jia-Baos</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Thu, 20 Apr 2023 17:04:11 +0800</lastBuildDate><atom:link href="uildDrafts/tags/biography/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 20 Apr 2023 17:04:11 +0800</lastBuildDate><atom:link href="https://jia-baos.github.io/tags/biography/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Biography</title>
-      <link>uildDrafts/biography/biography/</link>
+      <link>https://jia-baos.github.io/biography/biography/</link>
       <pubDate>Thu, 20 Apr 2023 17:04:11 +0800</pubDate>
       
-      <guid>uildDrafts/biography/biography/</guid>
+      <guid>https://jia-baos.github.io/biography/biography/</guid>
       <description>Notes: Here is a link to my Github homepage, Jia-Baos.
 I am pursuing my master’s degree in Shandong University of Science and Technology. My main focus is computer vision and their applications in industry, besides, i am pleased to embrace new technologies and amazing ideas.</description>
     </item>
