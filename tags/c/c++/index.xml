@@ -7,6 +7,15 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language><atom:link href="https://jia-baos.github.io/tags/c/c++/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>C&#43;&#43;线程池</title>
+      <link>https://jia-baos.github.io/basical-skills/c&#43;&#43;%E7%BA%BF%E7%A8%8B%E6%B1%A0/</link>
+      <pubDate>Sun, 08 Oct 2023 11:03:37 +0800</pubDate>
+      
+      <guid>https://jia-baos.github.io/basical-skills/c&#43;&#43;%E7%BA%BF%E7%A8%8B%E6%B1%A0/</guid>
+      <description>#include &amp;lt;iostream&amp;gt; // 标准输入输出流 #include &amp;lt;condition_variable&amp;gt; // 条件变量，用于线程同步 #include &amp;lt;functional&amp;gt; // 函数对象 #include &amp;lt;mutex&amp;gt; // 互斥锁 #include &amp;lt;queue&amp;gt; // 队列 #include &amp;lt;thread&amp;gt; // 线程 #include &amp;lt;vector&amp;gt; // 向量容器 #include &amp;lt;sstream&amp;gt; // 标准字符串流 #define __SOLA_LOGGING_ENABLED //! //! convenience macro to log with file and line information //! #ifdef __SOLA_LOGGING_ENABLED #define __SOLA_LOG(level, msg) sola::level(msg, __FILE__, __LINE__); #else #define __SOLA_LOG(level, msg) #endif /* __SOLA_LOGGING_ENABLED */ namespace sola { //! //! virtual base class //!</description>
+    </item>
+    
+    <item>
       <title>智能指针</title>
       <link>https://jia-baos.github.io/basical-skills/%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/</link>
       <pubDate>Sat, 07 Oct 2023 22:25:48 +0800</pubDate>
