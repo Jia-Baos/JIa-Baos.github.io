@@ -6,7 +6,16 @@
     <description>Recent content on Jia-Baos</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Sun, 08 Oct 2023 11:03:37 +0800</lastBuildDate><atom:link href="https://jia-baos.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 11 Oct 2023 09:01:40 +0800</lastBuildDate><atom:link href="https://jia-baos.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>彩色cout</title>
+      <link>https://jia-baos.github.io/basical-skills/%E5%BD%A9%E8%89%B2cout/</link>
+      <pubDate>Wed, 11 Oct 2023 09:01:40 +0800</pubDate>
+      
+      <guid>https://jia-baos.github.io/basical-skills/%E5%BD%A9%E8%89%B2cout/</guid>
+      <description>#ifndef CONSOLE_COLOR_H #define CONSOLE_COLOR_H #include &amp;lt;iostream&amp;gt; #include &amp;lt;windows.h&amp;gt; inline std::ostream &amp;amp;red(std::ostream &amp;amp;s) { HANDLE hStdout = GetStdHandle(STD_OUTPUT_HANDLE); SetConsoleTextAttribute(hStdout, FOREGROUND_RED | FOREGROUND_INTENSITY); return s; } inline std::ostream &amp;amp;blue(std::ostream &amp;amp;s) { HANDLE hStdout = GetStdHandle(STD_OUTPUT_HANDLE); SetConsoleTextAttribute(hStdout, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY); return s; } inline std::ostream &amp;amp;green(std::ostream &amp;amp;s) { HANDLE hStdout = GetStdHandle(STD_OUTPUT_HANDLE); SetConsoleTextAttribute(hStdout, FOREGROUND_GREEN | FOREGROUND_INTENSITY); return s; } inline std::ostream &amp;amp;yellow(std::ostream &amp;amp;s) { HANDLE hStdout = GetStdHandle(STD_OUTPUT_HANDLE); SetConsoleTextAttribute(hStdout, FOREGROUND_GREEN | FOREGROUND_RED | FOREGROUND_INTENSITY); return s; } inline std::ostream &amp;amp;white(std::ostream &amp;amp;s) { HANDLE hStdout = GetStdHandle(STD_OUTPUT_HANDLE); SetConsoleTextAttribute(hStdout, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE); return s; } struct color { WORD m_color; color(WORD attribute) : m_color(attribute){}; }; template &amp;lt;typename _Elem, typename _Traits&amp;gt; std::basic_ostream&amp;lt;_Elem, _Traits&amp;gt; &amp;amp; operator&amp;lt;&amp;lt;(std::basic_ostream&amp;lt;_Elem, _Traits&amp;gt; &amp;amp;i, const color &amp;amp;c) { HANDLE hStdout = GetStdHandle(STD_OUTPUT_HANDLE); SetConsoleTextAttribute(hStdout, c.</description>
+    </item>
+    
     <item>
       <title>C&#43;&#43;线程池</title>
       <link>https://jia-baos.github.io/basical-skills/c&#43;&#43;%E7%BA%BF%E7%A8%8B%E6%B1%A0/</link>
