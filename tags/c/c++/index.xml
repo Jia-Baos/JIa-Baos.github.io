@@ -7,38 +7,70 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language><atom:link href="https://jia-baos.github.io/tags/c/c++/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>进程和线程</title>
+      <link>https://jia-baos.github.io/blogs/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/</link>
+      <pubDate>Sun, 22 Oct 2023 21:11:46 +0800</pubDate>
+      
+      <guid>https://jia-baos.github.io/blogs/%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B/</guid>
+      <description>进程与线程 对于有线程的系统：
+进程是资源分配的独立单位 线程是资源调度的独立单位 对于无线程的系统：
+进程资源调度、分配的独立单位 进程之间的通信方式以及优缺点 管道（Pipe）
+有名管道：一种半双工的通信方式，它允许无亲缘关系进程间的通信
+优点：可以实现任意关系的进程间的通信
+缺点：a、长期存于系统中，使用不当容易出错；b、缓冲区有限。
+无名管道：一种半双工的通信方式，只能在具有亲缘关系的进程间使用（父子进程）
+优点：简单方便
+缺点：a、局限于单向通信；b、只能创建在它的进程以及其有亲缘关系的进程之间；c、缓冲区有限。
+信号量（Semaphore）：一个计数器，可以用来控制多个线程对共享资源的访问
+优点：可以同步进程
+缺点：信号量有限
+信号（Signal）：一种比较复杂的通信方式，用于通知接收进程某个事件已经发生
+消息队列（Message Queue）：是消息的链表，存放在内核中并由消息队列标识符标识
+优点：可以实现任意进程间的通信，并通过系统调用函数来实现消息发送和接收之间的同步，无需考虑同步问题，方便
+缺点：信息的复制需要额外消耗 CPU 的时间，不适宜于信息量大或操作频繁的场合
+共享内存（Shared Memory）：映射一段能被其他进程所访问的内存，这段共享内存由一个进程创建，但多个进程都可以访问
+优点：无须复制，快捷，信息量大
+缺点：a、通信是通过将共享空间缓冲区直接附加到进程的虚拟地址空间中来实现的，因此进程间的读写操作的同步问题；b、利用内存缓冲区直接交换信息，内存的实体存在于计算机中，只能同一个计算机系统中的诸多进程共享，不方便网络通信
+套接字（Socket）：可用于不同计算机间的进程通信
+优点：a、传输数据为字节级，传输数据可自定义，数据量小效率高；b、传输数据时间短，性能高；c、适合于客户端和服务器端之间信息实时交互；d、可以加密,数据安全性强；
+缺点：需对传输的数据进行解析，转化成应用级的数据。
+线程之间的通信方式 锁机制，包括互斥锁/量（mutex）、读写锁（reader-writer lock）、自旋锁（spin lock）、条件变量（condition） 互斥锁/量（mutex）：提供了以排他方式防止数据结构被并发修改的方法。 读写锁（reader-writer lock）：允许多个线程同时读共享数据，而对写操作是互斥的。 自旋锁（spin lock）与互斥锁类似，都是为了保护共享资源。互斥锁是当资源被占用，申请者进入睡眠状态；而自旋锁则循环检测保持者是否已经释放锁。 条件变量（condition）：可以以原子的方式阻塞进程，直到某个特定条件为真为止。对条件的测试是在互斥锁的保护下进行的。条件变量始终与互斥锁一起使用。 信号量机制(Semaphore)：无名线程信号量、命名线程信号量 信号机制(Signal)：类似进程间的信号处理 屏障（barrier）：屏障允许每个线程等待，直到所有的合作线程都达到某一点，然后从该点继续执行。 线程之间的通信 线程间的通信目的主要是用于线程同步，所以线程没有像进程通信中的用于数据交换的通信机制
+进程之间私有和共享的资源 私有：地址空间、堆、全局变量、栈、寄存器 共享：代码段，公共数据，进程目录，进程 ID 线程之间私有和共享的资源 私有：线程栈，寄存器，程序计数器 共享：堆，地址空间，全局变量，静态变量 </description>
+    </item>
+    
+    <item>
       <title>彩色cout</title>
-      <link>https://jia-baos.github.io/basical-skills/%E5%BD%A9%E8%89%B2cout/</link>
+      <link>https://jia-baos.github.io/blogs/%E5%BD%A9%E8%89%B2cout/</link>
       <pubDate>Wed, 11 Oct 2023 09:01:40 +0800</pubDate>
       
-      <guid>https://jia-baos.github.io/basical-skills/%E5%BD%A9%E8%89%B2cout/</guid>
+      <guid>https://jia-baos.github.io/blogs/%E5%BD%A9%E8%89%B2cout/</guid>
       <description>#ifndef CONSOLE_COLOR_H #define CONSOLE_COLOR_H #include &amp;lt;iostream&amp;gt; #include &amp;lt;windows.h&amp;gt; inline std::ostream &amp;amp;red(std::ostream &amp;amp;s) { HANDLE hStdout = GetStdHandle(STD_OUTPUT_HANDLE); SetConsoleTextAttribute(hStdout, FOREGROUND_RED | FOREGROUND_INTENSITY); return s; } inline std::ostream &amp;amp;blue(std::ostream &amp;amp;s) { HANDLE hStdout = GetStdHandle(STD_OUTPUT_HANDLE); SetConsoleTextAttribute(hStdout, FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_INTENSITY); return s; } inline std::ostream &amp;amp;green(std::ostream &amp;amp;s) { HANDLE hStdout = GetStdHandle(STD_OUTPUT_HANDLE); SetConsoleTextAttribute(hStdout, FOREGROUND_GREEN | FOREGROUND_INTENSITY); return s; } inline std::ostream &amp;amp;yellow(std::ostream &amp;amp;s) { HANDLE hStdout = GetStdHandle(STD_OUTPUT_HANDLE); SetConsoleTextAttribute(hStdout, FOREGROUND_GREEN | FOREGROUND_RED | FOREGROUND_INTENSITY); return s; } inline std::ostream &amp;amp;white(std::ostream &amp;amp;s) { HANDLE hStdout = GetStdHandle(STD_OUTPUT_HANDLE); SetConsoleTextAttribute(hStdout, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE); return s; } struct color { WORD m_color; color(WORD attribute) : m_color(attribute){}; }; template &amp;lt;typename _Elem, typename _Traits&amp;gt; std::basic_ostream&amp;lt;_Elem, _Traits&amp;gt; &amp;amp; operator&amp;lt;&amp;lt;(std::basic_ostream&amp;lt;_Elem, _Traits&amp;gt; &amp;amp;i, const color &amp;amp;c) { HANDLE hStdout = GetStdHandle(STD_OUTPUT_HANDLE); SetConsoleTextAttribute(hStdout, c.</description>
     </item>
     
     <item>
       <title>C&#43;&#43;线程池</title>
-      <link>https://jia-baos.github.io/basical-skills/c&#43;&#43;%E7%BA%BF%E7%A8%8B%E6%B1%A0/</link>
+      <link>https://jia-baos.github.io/blogs/c&#43;&#43;%E7%BA%BF%E7%A8%8B%E6%B1%A0/</link>
       <pubDate>Sun, 08 Oct 2023 11:03:37 +0800</pubDate>
       
-      <guid>https://jia-baos.github.io/basical-skills/c&#43;&#43;%E7%BA%BF%E7%A8%8B%E6%B1%A0/</guid>
+      <guid>https://jia-baos.github.io/blogs/c&#43;&#43;%E7%BA%BF%E7%A8%8B%E6%B1%A0/</guid>
       <description>#include &amp;lt;iostream&amp;gt; // 标准输入输出流 #include &amp;lt;condition_variable&amp;gt; // 条件变量，用于线程同步 #include &amp;lt;functional&amp;gt; // 函数对象 #include &amp;lt;mutex&amp;gt; // 互斥锁 #include &amp;lt;queue&amp;gt; // 队列 #include &amp;lt;thread&amp;gt; // 线程 #include &amp;lt;vector&amp;gt; // 向量容器 #include &amp;lt;sstream&amp;gt; // 标准字符串流 #define __SOLA_LOGGING_ENABLED //! //! convenience macro to log with file and line information //! #ifdef __SOLA_LOGGING_ENABLED #define __SOLA_LOG(level, msg) sola::level(msg, __FILE__, __LINE__); #else #define __SOLA_LOG(level, msg) #endif /* __SOLA_LOGGING_ENABLED */ namespace sola { //! //! virtual base class //!</description>
     </item>
     
     <item>
       <title>智能指针</title>
-      <link>https://jia-baos.github.io/basical-skills/%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/</link>
+      <link>https://jia-baos.github.io/blogs/%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/</link>
       <pubDate>Sat, 07 Oct 2023 22:25:48 +0800</pubDate>
       
-      <guid>https://jia-baos.github.io/basical-skills/%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/</guid>
+      <guid>https://jia-baos.github.io/blogs/%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/</guid>
       <description>#include &amp;lt;bits/stdc++.h&amp;gt; class Count { private: int count = 0; public: Count() { count = 1; } void Increase() { ++count; } void Decrease() { --count; } auto GetCount() { return count; } }; template &amp;lt;typename T&amp;gt; class SmartPtr { private: T *ptr_; Count *count_; public: SmartPtr() : ptr_(nullptr), count_(nullptr) {} explicit SmartPtr(T *ptr) : ptr_(ptr), count_(new Count()) {} ~SmartPtr() { if (count_ != nullptr) { count_-&amp;gt;Decrease(); if (count_-&amp;gt;GetCount() == 0) { delete ptr_; delete count_; ptr_ = nullptr; count_ = nullptr; } } } SmartPtr(const SmartPtr&amp;lt;T&amp;gt; &amp;amp;other) { ptr_ = other.</description>
     </item>
     
     <item>
       <title>莫用tuple作函数返回类型</title>
-      <link>https://jia-baos.github.io/basical-skills/%E8%8E%AB%E7%94%A8tuple%E4%BD%9C%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E%E7%B1%BB%E5%9E%8B/</link>
+      <link>https://jia-baos.github.io/blogs/%E8%8E%AB%E7%94%A8tuple%E4%BD%9C%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E%E7%B1%BB%E5%9E%8B/</link>
       <pubDate>Fri, 15 Sep 2023 22:07:31 +0800</pubDate>
       
-      <guid>https://jia-baos.github.io/basical-skills/%E8%8E%AB%E7%94%A8tuple%E4%BD%9C%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E%E7%B1%BB%E5%9E%8B/</guid>
+      <guid>https://jia-baos.github.io/blogs/%E8%8E%AB%E7%94%A8tuple%E4%BD%9C%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E%E7%B1%BB%E5%9E%8B/</guid>
       <description>莫用 std::tuple 作为函数返回类型 假设我们要返回性别、年龄、名字，可以利用 std::tuple，但是我们无法知道我们获取值的属性。
 #include &amp;lt;bits/stdc++.h&amp;gt; auto func() -&amp;gt; std::tuple&amp;lt;std::string, std::string, int&amp;gt; { return {&amp;#34;Losser&amp;#34;, &amp;#34;male&amp;#34;, 101}; } int main() { auto result = func(); std::cout &amp;lt;&amp;lt; &amp;#34;Name: &amp;#34; &amp;lt;&amp;lt; std::get&amp;lt;0&amp;gt;(result) &amp;lt;&amp;lt; &amp;#34;, Gender: &amp;#34; &amp;lt;&amp;lt; std::get&amp;lt;1&amp;gt;(result) &amp;lt;&amp;lt; &amp;#34;, Age: &amp;#34; &amp;lt;&amp;lt; std::get&amp;lt;2&amp;gt;(result) &amp;lt;&amp;lt; std::endl; } 优化版本一（使用枚举）：
 #include &amp;lt;bits/stdc++.h&amp;gt; enum people{ Name, Gender, Age }; auto func() -&amp;gt; std::tuple&amp;lt;std::string, std::string, int&amp;gt; { return {&amp;#34;Losser&amp;#34;, &amp;#34;male&amp;#34;, 101}; } int main() { auto result = func(); std::cout &amp;lt;&amp;lt; &amp;#34;Name: &amp;#34; &amp;lt;&amp;lt; std::get&amp;lt;people::Name&amp;gt;(result) &amp;lt;&amp;lt; &amp;#34;, Gender: &amp;#34; &amp;lt;&amp;lt; std::get&amp;lt;people::Gender&amp;gt;(result) &amp;lt;&amp;lt; &amp;#34;, Age: &amp;#34; &amp;lt;&amp;lt; std::get&amp;lt;people::Age&amp;gt;(result) &amp;lt;&amp;lt; std::endl; } 优化版本二（使用 std::tie）：</description>
@@ -46,47 +78,47 @@
     
     <item>
       <title>C语言字符串数组</title>
-      <link>https://jia-baos.github.io/basical-skills/c%E8%AF%AD%E8%A8%80%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%95%B0%E7%BB%84/</link>
+      <link>https://jia-baos.github.io/blogs/c%E8%AF%AD%E8%A8%80%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%95%B0%E7%BB%84/</link>
       <pubDate>Sat, 05 Aug 2023 10:28:01 +0800</pubDate>
       
-      <guid>https://jia-baos.github.io/basical-skills/c%E8%AF%AD%E8%A8%80%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%95%B0%E7%BB%84/</guid>
+      <guid>https://jia-baos.github.io/blogs/c%E8%AF%AD%E8%A8%80%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%95%B0%E7%BB%84/</guid>
       <description>#include &amp;lt;bits/stdc++.h&amp;gt; int main() { char str1[] = &amp;#34;abc&amp;#34;; char str2[] = &amp;#34;abc&amp;#34;; const char str3[] = &amp;#34;abc&amp;#34;; const char str4[] = &amp;#34;abc&amp;#34;; const char *str5 = &amp;#34;abc&amp;#34;; const char *str6 = &amp;#34;abc&amp;#34;; char *str7 = &amp;#34;abc&amp;#34;; char *str8 = &amp;#34;abc&amp;#34;; // 因地址向下增长，所以内存均开辟在栈上 std::cout &amp;lt;&amp;lt; &amp;#34;str1&amp;#39;s Address: &amp;#34; &amp;lt;&amp;lt; &amp;amp;str1 &amp;lt;&amp;lt; std::endl; std::cout &amp;lt;&amp;lt; &amp;#34;str2&amp;#39;s Address: &amp;#34; &amp;lt;&amp;lt; &amp;amp;str2 &amp;lt;&amp;lt; std::endl; std::cout &amp;lt;&amp;lt; &amp;#34;str3&amp;#39;s Address: &amp;#34; &amp;lt;&amp;lt; &amp;amp;str3 &amp;lt;&amp;lt; std::endl; std::cout &amp;lt;&amp;lt; &amp;#34;str4&amp;#39;s Address: &amp;#34; &amp;lt;&amp;lt; &amp;amp;str4 &amp;lt;&amp;lt; std::endl; // 字符串变量比较不能直接用==，但是可以用变量地址和字符串用==比较，如果地址相同，字符串会相等 std::cout &amp;lt;&amp;lt; std::boolalpha &amp;lt;&amp;lt; (str1 == str2) &amp;lt;&amp;lt; std::endl; std::cout &amp;lt;&amp;lt; std::boolalpha &amp;lt;&amp;lt; (str3 == str4) &amp;lt;&amp;lt; std::endl; // 字符串变量比较的正确方式 if (strcmp(str1, str2) == 0) { std::cout &amp;lt;&amp;lt; &amp;#34;str1 == str2&amp;#34; &amp;lt;&amp;lt; std::endl; } // str5、str6、str7和str8指向常量存储区的同一块内存 // 所以其相等 std::cout &amp;lt;&amp;lt; std::boolalpha &amp;lt;&amp;lt; (str5 == str6) &amp;lt;&amp;lt; std::endl; std::cout &amp;lt;&amp;lt; std::boolalpha &amp;lt;&amp;lt; (str7 == str8) &amp;lt;&amp;lt; std::endl; std::cout &amp;lt;&amp;lt; std::boolalpha &amp;lt;&amp;lt; (str5 == str7) &amp;lt;&amp;lt; std::endl; std::cout &amp;lt;&amp;lt; std::boolalpha &amp;lt;&amp;lt; (str6 == str8) &amp;lt;&amp;lt; std::endl; } </description>
     </item>
     
     <item>
       <title>堆和栈的判断</title>
-      <link>https://jia-baos.github.io/basical-skills/%E5%A0%86%E5%92%8C%E6%A0%88%E7%9A%84%E5%88%A4%E6%96%AD/</link>
+      <link>https://jia-baos.github.io/blogs/%E5%A0%86%E5%92%8C%E6%A0%88%E7%9A%84%E5%88%A4%E6%96%AD/</link>
       <pubDate>Tue, 01 Aug 2023 09:25:11 +0800</pubDate>
       
-      <guid>https://jia-baos.github.io/basical-skills/%E5%A0%86%E5%92%8C%E6%A0%88%E7%9A%84%E5%88%A4%E6%96%AD/</guid>
+      <guid>https://jia-baos.github.io/blogs/%E5%A0%86%E5%92%8C%E6%A0%88%E7%9A%84%E5%88%A4%E6%96%AD/</guid>
       <description>堆向高地址位扩展，栈向低地址位扩展。此外，指针只能指向堆中的对象。
 #include &amp;lt;iostream&amp;gt; int main() { int *val1 = new int(1); int *val2 = new int(2); int val3{3}; int val4{4}; std::cout &amp;lt;&amp;lt; &amp;#34;val1&amp;#39;s address &amp;#34; &amp;lt;&amp;lt; val1 &amp;lt;&amp;lt; std::endl; std::cout &amp;lt;&amp;lt; &amp;#34;val2&amp;#39;s address &amp;#34; &amp;lt;&amp;lt; val2 &amp;lt;&amp;lt; std::endl; std::cout &amp;lt;&amp;lt; &amp;#34;val3&amp;#39;s address &amp;#34; &amp;lt;&amp;lt; &amp;amp;val3 &amp;lt;&amp;lt; std::endl; std::cout &amp;lt;&amp;lt; &amp;#34;val4&amp;#39;s address &amp;#34; &amp;lt;&amp;lt; &amp;amp;val4 &amp;lt;&amp;lt; std::endl; // val1&amp;#39;s address 0x168678b5fa0 // val2&amp;#39;s address 0x168678bdd50 // val3&amp;#39;s address 0x32291ffa7c // val4&amp;#39;s address 0x32291ffa78 } </description>
     </item>
     
     <item>
       <title>哈希表实现</title>
-      <link>https://jia-baos.github.io/basical-skills/%E5%93%88%E5%B8%8C%E8%A1%A8%E5%AE%9E%E7%8E%B0/</link>
+      <link>https://jia-baos.github.io/blogs/%E5%93%88%E5%B8%8C%E8%A1%A8%E5%AE%9E%E7%8E%B0/</link>
       <pubDate>Mon, 31 Jul 2023 21:39:19 +0800</pubDate>
       
-      <guid>https://jia-baos.github.io/basical-skills/%E5%93%88%E5%B8%8C%E8%A1%A8%E5%AE%9E%E7%8E%B0/</guid>
+      <guid>https://jia-baos.github.io/blogs/%E5%93%88%E5%B8%8C%E8%A1%A8%E5%AE%9E%E7%8E%B0/</guid>
       <description>#include &amp;lt;iostream&amp;gt; #include &amp;lt;vector&amp;gt; #include &amp;lt;list&amp;gt; #include &amp;lt;random&amp;gt; const int hashsize = 12; // 定义结点结构体 template&amp;lt;typename T, typename U&amp;gt; struct HashNode { T key_; U val_; }; // 使用拉链法实现哈希表类 template&amp;lt;typename T, typename U&amp;gt; class HashTable { private: std::vector&amp;lt;std::list&amp;lt;HashNode&amp;lt;T, U&amp;gt;&amp;gt;&amp;gt; vec;	// 存储结点 public: HashTable() :vec(hashsize) {} ~HashTable() {}; // 哈希函数（除留取余） int hash(const T&amp;amp; key) { { return key % 13; } } // 哈希查找 bool hashFind(const T&amp;amp; key) { int index = hash(key); for (auto iter = vec[index].</description>
     </item>
     
     <item>
       <title>array new/delete</title>
-      <link>https://jia-baos.github.io/basical-skills/array-new/</link>
+      <link>https://jia-baos.github.io/blogs/array-new/</link>
       <pubDate>Mon, 31 Jul 2023 16:02:34 +0800</pubDate>
       
-      <guid>https://jia-baos.github.io/basical-skills/array-new/</guid>
+      <guid>https://jia-baos.github.io/blogs/array-new/</guid>
       <description>#include &amp;lt;iostream&amp;gt; class A { public: int id_; A() :id_(0) { std::cout &amp;lt;&amp;lt; &amp;#34;default Ctor.this = &amp;#34; &amp;lt;&amp;lt; this &amp;lt;&amp;lt; &amp;#34; id = &amp;#34; &amp;lt;&amp;lt; id_ &amp;lt;&amp;lt; std::endl; }; A(int id) :id_(id) { std::cout &amp;lt;&amp;lt; &amp;#34;Ctor.this = &amp;#34; &amp;lt;&amp;lt; this &amp;lt;&amp;lt; &amp;#34; id = &amp;#34; &amp;lt;&amp;lt; id_ &amp;lt;&amp;lt; std::endl; }; ~A() { std::cout &amp;lt;&amp;lt; &amp;#34;Dtor.this = &amp;#34; &amp;lt;&amp;lt; this &amp;lt;&amp;lt; &amp;#34; id = &amp;#34; &amp;lt;&amp;lt; id_ &amp;lt;&amp;lt; std::endl; }; }; int main() { std::cout &amp;lt;&amp;lt; _MSVC_LANG &amp;lt;&amp;lt; std::endl; size_t size = 3; // default Ctor调用三次，[0]先于[1]先于[2] // A必须有 default Ctor，否则[Error] no matching function for call to &amp;#39;A::A()&amp;#39; A* buf = new A[size]; A* tmp = buf; std::cout &amp;lt;&amp;lt; &amp;#34;buf=&amp;#34; &amp;lt;&amp;lt; buf &amp;lt;&amp;lt; &amp;#34; tmp=&amp;#34; &amp;lt;&amp;lt; tmp &amp;lt;&amp;lt; std::endl; for (size_t i = 0; i &amp;lt; 3; ++i) { // Ctor3次 new(tmp++)A(i); } std::cout &amp;lt;&amp;lt; &amp;#34;buf=&amp;#34; &amp;lt;&amp;lt; buf &amp;lt;&amp;lt; &amp;#34; tmp=&amp;#34; &amp;lt;&amp;lt; tmp &amp;lt;&amp;lt; std::endl; // Dtor3次（次序逆反），[2]先于[1]先于[0] // Dtor被唤起时，this指向不同的object delete[] buf; } </description>
     </item>
     
     <item>
       <title>new和operator new</title>
-      <link>https://jia-baos.github.io/basical-skills/new%E5%92%8Coperator-new/</link>
+      <link>https://jia-baos.github.io/blogs/new%E5%92%8Coperator-new/</link>
       <pubDate>Mon, 31 Jul 2023 15:24:37 +0800</pubDate>
       
-      <guid>https://jia-baos.github.io/basical-skills/new%E5%92%8Coperator-new/</guid>
+      <guid>https://jia-baos.github.io/blogs/new%E5%92%8Coperator-new/</guid>
       <description>new new是C++中的关键字，其行为总是一致的，先调用operator new分配内存，然后调用构造函数初始化那段内存；
 operator new operator new是一个函数，就像重载任何一个符号如operator +，它用来分配内存（只不过new除了调用它还有其他步骤）。它可以被重载，通过重载它，可以改变new操作符的功能。它的功能介意类比c语言中的malloc，如果类中没有重载operator new，那么调用的就是全局的::operator new来从堆中分配内存。
 如果想重载operator new需要注意以下几点：
@@ -97,10 +129,10 @@ placement new的使用步骤如下：
     
     <item>
       <title>C&#43;&#43;内存管理</title>
-      <link>https://jia-baos.github.io/basical-skills/c&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</link>
+      <link>https://jia-baos.github.io/blogs/c&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</link>
       <pubDate>Mon, 31 Jul 2023 14:40:10 +0800</pubDate>
       
-      <guid>https://jia-baos.github.io/basical-skills/c&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</guid>
+      <guid>https://jia-baos.github.io/blogs/c&#43;&#43;%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</guid>
       <description>自由存储区和堆 由new分配/delete释放的内存开辟于自由存储区，由malloc分配/free释放的内存开辟于堆。 内存泄漏的场景 malloc和free未成对出现；new/new[]和delete/delete[]未成对出现，在构造函数中动态分配内存，但未在析构函数中正确释放内存； 未定义拷贝构造函数或赋值运算符重载，从而造成一块内存被多次释放； 未将基类的析构函数定义为虚函数。 如何让对象只在堆（栈）上分配空间 在C++中，类的对象建立分为两种：
 静态建立，如A a； 动态建立，如A* ptr=new A； 这两种方式是有区别的。 1、静态建立类对象：是由编译器为对象在栈空间中分配内存，是通过直接移动栈顶指针，挪出适当的空间，然后在这片内存空间上调用构造函数形成一个栈对象。使用这种方法，直接调用类的构造函数。 2、动态建立类对象，是使用new运算符将对象建立在堆空间中。这个过程分为两步，第一步是执行operator new()函数，在堆空间中搜索合适的内存并进行分配；第二步是调用构造函数构造对象，初始化这片内存空间，这种方法，间接调用类的构造函数。
 只在堆上分配空间 容易想到将构造函数设为私有。在构造函数私有之后，无法在类外部调用构造函数来构造类对象，只能使用new运算符来建立对象。然而，前面已经说过，new运算符的执行过程分为两步，C++提供new运算符的重载，其实是只允许重载operator new()函数，而operator new()函数只用于分配内存，无法提供构造功能。因此，这种方法不可以。
@@ -113,10 +145,10 @@ class A { protected: A() {} ~A() {} public: static A* create() { return new A();
     
     <item>
       <title>常量指针和指针常量</title>
-      <link>https://jia-baos.github.io/basical-skills/%E5%B8%B8%E9%87%8F%E6%8C%87%E9%92%88%E5%92%8C%E6%8C%87%E9%92%88%E5%B8%B8%E9%87%8F/</link>
+      <link>https://jia-baos.github.io/blogs/%E5%B8%B8%E9%87%8F%E6%8C%87%E9%92%88%E5%92%8C%E6%8C%87%E9%92%88%E5%B8%B8%E9%87%8F/</link>
       <pubDate>Mon, 31 Jul 2023 09:53:46 +0800</pubDate>
       
-      <guid>https://jia-baos.github.io/basical-skills/%E5%B8%B8%E9%87%8F%E6%8C%87%E9%92%88%E5%92%8C%E6%8C%87%E9%92%88%E5%B8%B8%E9%87%8F/</guid>
+      <guid>https://jia-baos.github.io/blogs/%E5%B8%B8%E9%87%8F%E6%8C%87%E9%92%88%E5%92%8C%E6%8C%87%E9%92%88%E5%B8%B8%E9%87%8F/</guid>
       <description>常量指针：指向常量的指针，将指针的内容作为地址寻址，获取该地址处的变量，该变量被const修饰；
 指针常量：指针是常量，当前指针被const修饰，将其内容作为地址寻址，获取该地址处的变量，该变量可以变化。
 #include &amp;lt;bits//stdc++.h&amp;gt; int main() { int val1{}; int val2{}; // 常量指针 // 可更改指向，但不可更改原指向的内容 const int *ptr1 = &amp;amp;val1; //*ptr1 = 1; // Error ptr1 = &amp;amp;val2; // 指针常量 // 可更改指向的内容，但不可更改指向 int *const ptr2 = &amp;amp;val1; *ptr2 = 1; //ptr2 = &amp;amp;val2; //Error } </description>
@@ -124,19 +156,19 @@ class A { protected: A() {} ~A() {} public: static A* create() { return new A();
     
     <item>
       <title>C&#43;&#43;20管道运算符</title>
-      <link>https://jia-baos.github.io/basical-skills/c&#43;&#43;20%E7%AE%A1%E9%81%93%E8%BF%90%E7%AE%97%E7%AC%A6/</link>
+      <link>https://jia-baos.github.io/blogs/c&#43;&#43;20%E7%AE%A1%E9%81%93%E8%BF%90%E7%AE%97%E7%AC%A6/</link>
       <pubDate>Sun, 23 Jul 2023 18:56:50 +0800</pubDate>
       
-      <guid>https://jia-baos.github.io/basical-skills/c&#43;&#43;20%E7%AE%A1%E9%81%93%E8%BF%90%E7%AE%97%E7%AC%A6/</guid>
+      <guid>https://jia-baos.github.io/blogs/c&#43;&#43;20%E7%AE%A1%E9%81%93%E8%BF%90%E7%AE%97%E7%AC%A6/</guid>
       <description>#include &amp;lt;iostream&amp;gt; #include &amp;lt;ranges&amp;gt; int main() { auto const ints = { 0,1,2,3,4,5 }; auto even = [](int i) { return 0 == i % 2; }; auto square = [](int i) { return i * i; }; // 组合视图的“管道”语法： for (int i : ints | std::views::filter(even) | std::views::transform(square)) { std::cout &amp;lt;&amp;lt; i &amp;lt;&amp;lt; &amp;#39; &amp;#39;; } std::cout &amp;lt;&amp;lt; std::endl; // 传统的“函数式”组合语法,filter是筛选，然后再用transform筛选 for (int i : std::views::transform(std::views::filter(ints, even), square)) { std::cout &amp;lt;&amp;lt; i &amp;lt;&amp;lt; &amp;#39; &amp;#39;; } std::cout &amp;lt;&amp;lt; std::endl; auto f = std::views::transform([](int n) { return n *= n; }); auto ret = ints | f;//并没有改变ints，只是返回一个序列 for (auto i : ret) { std::cout &amp;lt;&amp;lt; i &amp;lt;&amp;lt; &amp;#39; &amp;#39;; } } 运算符重载实现管道运算符</description>
     </item>
     
     <item>
       <title>C语言数组</title>
-      <link>https://jia-baos.github.io/basical-skills/c%E8%AF%AD%E8%A8%80%E6%95%B0%E7%BB%84/</link>
+      <link>https://jia-baos.github.io/blogs/c%E8%AF%AD%E8%A8%80%E6%95%B0%E7%BB%84/</link>
       <pubDate>Wed, 19 Jul 2023 12:43:20 +0800</pubDate>
       
-      <guid>https://jia-baos.github.io/basical-skills/c%E8%AF%AD%E8%A8%80%E6%95%B0%E7%BB%84/</guid>
+      <guid>https://jia-baos.github.io/blogs/c%E8%AF%AD%E8%A8%80%E6%95%B0%E7%BB%84/</guid>
       <description>仅在以下3种情况中，数组不会退化成指针
 使用sizeof(a)的时候； 对数组名取地址操作：&amp;amp;a。&amp;amp;a的类型为pointer to array of 6 chars； 使用字符串初始化数组的时候也不会退化。 其它情况都会退化成“指向数组首元素的指针”
 数组名做函数参数时，a都会退化成&amp;amp;a[0]指针； 二维数组，char s[10][8]数组的首元素（得理解这个首元素，从一维数组的角度看的）是一维数组s[0]，因此退化成&amp;amp;s[0]指针。 数组定义字符串和指针定义字符串的区别
@@ -145,10 +177,10 @@ class A { protected: A() {} ~A() {} public: static A* create() { return new A();
     
     <item>
       <title>大小端判断</title>
-      <link>https://jia-baos.github.io/basical-skills/%E5%A4%A7%E5%B0%8F%E7%AB%AF%E5%88%A4%E6%96%AD/</link>
+      <link>https://jia-baos.github.io/blogs/%E5%A4%A7%E5%B0%8F%E7%AB%AF%E5%88%A4%E6%96%AD/</link>
       <pubDate>Wed, 19 Jul 2023 11:08:48 +0800</pubDate>
       
-      <guid>https://jia-baos.github.io/basical-skills/%E5%A4%A7%E5%B0%8F%E7%AB%AF%E5%88%A4%E6%96%AD/</guid>
+      <guid>https://jia-baos.github.io/blogs/%E5%A4%A7%E5%B0%8F%E7%AB%AF%E5%88%A4%E6%96%AD/</guid>
       <description>大小端判断
 大端：较高的有效字节存放在较低的存储器地址，较低的有效字节存放在较高的存储期地址；
 小端：较高的有效字节存放在较高的存储期地址，较低的有效字节存放在较低的存储期地址。
@@ -157,103 +189,107 @@ class A { protected: A() {} ~A() {} public: static A* create() { return new A();
     
     <item>
       <title>动态、静态类型</title>
-      <link>https://jia-baos.github.io/basical-skills/%E5%8A%A8%E6%80%81%E5%92%8C%E9%9D%99%E6%80%81%E7%B1%BB%E5%9E%8B/</link>
+      <link>https://jia-baos.github.io/blogs/%E5%8A%A8%E6%80%81%E5%92%8C%E9%9D%99%E6%80%81%E7%B1%BB%E5%9E%8B/</link>
       <pubDate>Sat, 15 Jul 2023 17:23:05 +0800</pubDate>
       
-      <guid>https://jia-baos.github.io/basical-skills/%E5%8A%A8%E6%80%81%E5%92%8C%E9%9D%99%E6%80%81%E7%B1%BB%E5%9E%8B/</guid>
+      <guid>https://jia-baos.github.io/blogs/%E5%8A%A8%E6%80%81%E5%92%8C%E9%9D%99%E6%80%81%E7%B1%BB%E5%9E%8B/</guid>
       <description>如果表达式的类型是类类型且至少包含有一个虚函数，则typeid操作符返回表达式的动态类型，需要在运行时计算；否则，typeid操作符返回表达式的静态类型，在编译时就可以计算。
 #include &amp;lt;iostream&amp;gt; struct Base { virtual ~Base() {} }; struct Derived : Base { }; int main(int argc, char* argv[]) { Derived derived; Base* ptr = &amp;amp;derived; puts(&amp;#34;----------------&amp;#34;); // (*ptr)的静态类型是B // (*ptr)的静态类型是D std::cout &amp;lt;&amp;lt; std::boolalpha &amp;lt;&amp;lt; std::is_same_v&amp;lt;std::remove_reference_t&amp;lt;decltype(*ptr)&amp;gt;, Base&amp;gt; &amp;lt;&amp;lt; std::endl; std::cout &amp;lt;&amp;lt; std::boolalpha &amp;lt;&amp;lt; (typeid(*ptr) == typeid(Base)) &amp;lt;&amp;lt; std::endl; // ---------------- // true // false } #include &amp;lt;iostream&amp;gt; #include &amp;lt;typeinfo&amp;gt; #define OUTPUT(f) std::cout &amp;lt;&amp;lt; #f &amp;lt;&amp;lt; &amp;#34;\t: &amp;#34; &amp;lt;&amp;lt; typeid(f).</description>
     </item>
     
     <item>
       <title>形参包解析</title>
-      <link>https://jia-baos.github.io/basical-skills/%E5%BD%A2%E5%8F%82%E5%8C%85%E8%A7%A3%E6%9E%90/</link>
+      <link>https://jia-baos.github.io/blogs/%E5%BD%A2%E5%8F%82%E5%8C%85%E8%A7%A3%E6%9E%90/</link>
       <pubDate>Sat, 15 Jul 2023 16:49:48 +0800</pubDate>
       
-      <guid>https://jia-baos.github.io/basical-skills/%E5%BD%A2%E5%8F%82%E5%8C%85%E8%A7%A3%E6%9E%90/</guid>
+      <guid>https://jia-baos.github.io/blogs/%E5%BD%A2%E5%8F%82%E5%8C%85%E8%A7%A3%E6%9E%90/</guid>
       <description>形参包的解析可以有两种方式：
 递归 折叠表达式 #include &amp;lt;iostream&amp;gt; template&amp;lt;int...args&amp;gt; constexpr int test1 = (args - ...); template&amp;lt;int...args&amp;gt; constexpr int test2 = (... - args); // 递归终止 void print1() {} template &amp;lt;typename T, typename...Types&amp;gt; void print1(const T&amp;amp; firstArg, const Types&amp;amp;...args) { std::cout &amp;lt;&amp;lt; firstArg &amp;lt;&amp;lt; std::endl; // print() first argument print1(args...); // call print() for remaining arguments } // 二元折叠表达式 template&amp;lt;typename...Args&amp;gt; void print2(Args&amp;amp;&amp;amp;...args) { (std::cout &amp;lt;&amp;lt; ... &amp;lt;&amp;lt; args) &amp;lt;&amp;lt; std::endl; } // 一元右折叠表达式+逗号表达式 template&amp;lt;typename.</description>
     </item>
     
     <item>
       <title>异常中new对象</title>
-      <link>https://jia-baos.github.io/basical-skills/%E5%BC%82%E5%B8%B8%E4%B8%ADnew%E5%AF%B9%E8%B1%A1/</link>
+      <link>https://jia-baos.github.io/blogs/%E5%BC%82%E5%B8%B8%E4%B8%ADnew%E5%AF%B9%E8%B1%A1/</link>
       <pubDate>Sat, 15 Jul 2023 16:10:41 +0800</pubDate>
       
-      <guid>https://jia-baos.github.io/basical-skills/%E5%BC%82%E5%B8%B8%E4%B8%ADnew%E5%AF%B9%E8%B1%A1/</guid>
+      <guid>https://jia-baos.github.io/blogs/%E5%BC%82%E5%B8%B8%E4%B8%ADnew%E5%AF%B9%E8%B1%A1/</guid>
       <description>MSVC下可通过编译，GCC报错。
 #include &amp;lt;iostream&amp;gt; #include &amp;lt;exception&amp;gt; struct MyException : std::exception { MyException(const char* s) : exception(s) { puts(&amp;#34;MyException()...&amp;#34;); } ~MyException() { puts(&amp;#34;~MyException()...&amp;#34;); } }; void f1() try { throw MyException(&amp;#34;MyException...&amp;#34;); } // 与其他临时对象不同，异常对象在初始化 catch 子句形参时被认为是左值， // 所以它可以用左值引用捕获、修改及重抛。 catch (std::exception&amp;amp; e) { std::cerr &amp;lt;&amp;lt; e.what() &amp;lt;&amp;lt; std::endl; } void f2() try { throw new MyException(&amp;#34;new MyException...&amp;#34;); } catch (std::exception* e) { std::cerr &amp;lt;&amp;lt; e-&amp;gt;what() &amp;lt;&amp;lt; std::endl; delete e; } int main(int argc, char* argv[]) { f1(); puts(&amp;#34;----------------&amp;#34;); f2(); } </description>
     </item>
     
     <item>
       <title>伪析构函数</title>
-      <link>https://jia-baos.github.io/basical-skills/%E4%BC%AA%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0/</link>
+      <link>https://jia-baos.github.io/blogs/%E4%BC%AA%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0/</link>
       <pubDate>Sat, 15 Jul 2023 12:21:10 +0800</pubDate>
       
-      <guid>https://jia-baos.github.io/basical-skills/%E4%BC%AA%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0/</guid>
+      <guid>https://jia-baos.github.io/blogs/%E4%BC%AA%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0/</guid>
       <description>#include &amp;lt;iostream&amp;gt; template&amp;lt;typename T&amp;gt; concept is_destruct = requires(T t) { t.~T(); }; struct X { }; int main(int argc, char* argv[]) { // 拜伪析构函数调用所赐，所有标量类型都满足可析构 (Destructible) 的要求， // 而数组类型和引用类型则不满足。 std::cout &amp;lt;&amp;lt; std::boolalpha &amp;lt;&amp;lt; is_destruct&amp;lt;X&amp;gt; &amp;lt;&amp;lt; std::endl; std::cout &amp;lt;&amp;lt; std::boolalpha &amp;lt;&amp;lt; is_destruct&amp;lt;int&amp;gt; &amp;lt;&amp;lt; std::endl; using type = int; type a = 1; a.~type();	// 生存期结束 std::cout &amp;lt;&amp;lt; a &amp;lt;&amp;lt; std::endl;	// 生存期外，存储期内 } </description>
     </item>
     
     <item>
       <title>复制消除</title>
-      <link>https://jia-baos.github.io/basical-skills/%E5%A4%8D%E5%88%B6%E6%B6%88%E9%99%A4/</link>
+      <link>https://jia-baos.github.io/blogs/%E5%A4%8D%E5%88%B6%E6%B6%88%E9%99%A4/</link>
       <pubDate>Sat, 15 Jul 2023 11:14:08 +0800</pubDate>
       
-      <guid>https://jia-baos.github.io/basical-skills/%E5%A4%8D%E5%88%B6%E6%B6%88%E9%99%A4/</guid>
+      <guid>https://jia-baos.github.io/blogs/%E5%A4%8D%E5%88%B6%E6%B6%88%E9%99%A4/</guid>
       <description>#include &amp;lt;bits/stdc++.h&amp;gt; struct X { X() { puts(&amp;#34;int&amp;#34;); } X(const int &amp;amp;) { puts(&amp;#34;const int&amp;amp;&amp;#34;); } X(int &amp;amp;&amp;amp;) { puts(&amp;#34;int&amp;amp;&amp;amp;&amp;#34;); } }; X f() { return X(); } int main(int argc, char *argv[]) { X x1 = 1; // int&amp;amp;&amp;amp; puts(&amp;#34;--------------&amp;#34;); X x2 = f(); // int } [1]复制消除</description>
     </item>
     
     <item>
       <title>运算符重载</title>
-      <link>https://jia-baos.github.io/basical-skills/%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/</link>
+      <link>https://jia-baos.github.io/blogs/%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/</link>
       <pubDate>Sat, 15 Jul 2023 10:39:36 +0800</pubDate>
       
-      <guid>https://jia-baos.github.io/basical-skills/%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/</guid>
+      <guid>https://jia-baos.github.io/blogs/%E8%BF%90%E7%AE%97%E7%AC%A6%E9%87%8D%E8%BD%BD/</guid>
       <description>#include &amp;lt;bits/stdc++.h&amp;gt; struct X { int val_; X(int val) : val_{val} {} bool operator==(const X &amp;amp;x) const { return x.val_ == this-&amp;gt;val_; } }; struct Y { int val_; Y(int val) : val_{val} {} // 运算符重载推荐使用非成员函数 friend bool operator==(const Y &amp;amp;a, const Y &amp;amp;b) { return a.val_ == b.val_; } }; int main(int argc, char *argv[]) { X x1{1}; X x2{1}; Y y1{1}; Y y2{1}; x1 == x2; x2 == x1; x1 == 1; //1 == x1; // 在C++20可以保证被编译 y1 == y2; y2 == y1; y1 == 1; 1 == y1; } </description>
     </item>
     
     <item>
       <title>对象存储可变参数</title>
-      <link>https://jia-baos.github.io/basical-skills/%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0/</link>
+      <link>https://jia-baos.github.io/blogs/%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0/</link>
       <pubDate>Sat, 15 Jul 2023 10:25:23 +0800</pubDate>
       
-      <guid>https://jia-baos.github.io/basical-skills/%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0/</guid>
+      <guid>https://jia-baos.github.io/blogs/%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0/</guid>
       <description>#include &amp;lt;bits/stdc++.h&amp;gt; // std::invocable 检查类型能否以给定的实参类型调用 template&amp;lt;typename F, typename...Args&amp;gt; requires std::invocable&amp;lt;F, Args...&amp;gt; struct Input { using R = std::invoke_result_t&amp;lt;F, Args...&amp;gt;; F f_; // 可调用对象 std::tuple&amp;lt;Args...&amp;gt; value_; // 存储可变参数 Input(F f, Args...args) : f_(f), value_(args...) {} constexpr R operator()() const noexcept { // std::apply 推导以一组实参调用一个可调用对象的结果类型 return std::apply(f_, value_); } }; int main(int argc, char *argv[]) { // 传入可调用对象和形参包 Input input([](int a, float b) { std::cout &amp;lt;&amp;lt; a &amp;lt;&amp;lt; &amp;#34; &amp;#34; &amp;lt;&amp;lt; b &amp;lt;&amp;lt; std::endl; }, 1, 2.</description>
     </item>
     
     <item>
       <title>函数声明</title>
-      <link>https://jia-baos.github.io/basical-skills/%E5%87%BD%E6%95%B0%E5%A3%B0%E6%98%8E/</link>
+      <link>https://jia-baos.github.io/blogs/%E5%87%BD%E6%95%B0%E5%A3%B0%E6%98%8E/</link>
       <pubDate>Sat, 15 Jul 2023 10:05:33 +0800</pubDate>
       
-      <guid>https://jia-baos.github.io/basical-skills/%E5%87%BD%E6%95%B0%E5%A3%B0%E6%98%8E/</guid>
+      <guid>https://jia-baos.github.io/blogs/%E5%87%BD%E6%95%B0%E5%A3%B0%E6%98%8E/</guid>
       <description>#include &amp;lt;bits/stdc++.h&amp;gt; void func(int n) { std::cout &amp;lt;&amp;lt; n &amp;lt;&amp;lt; std::endl; } using type = decltype(func); type F; // 函数声明 int main() { F(1); } void F(int) { std::cout &amp;lt;&amp;lt; &amp;#34;Defination of Function&amp;#34; &amp;lt;&amp;lt; std::endl; } </description>
     </item>
     
     <item>
       <title>传递函数模板</title>
-      <link>https://jia-baos.github.io/basical-skills/%E4%BC%A0%E9%80%92%E5%87%BD%E6%95%B0%E6%A8%A1%E6%9D%BF/</link>
+      <link>https://jia-baos.github.io/blogs/%E4%BC%A0%E9%80%92%E5%87%BD%E6%95%B0%E6%A8%A1%E6%9D%BF/</link>
       <pubDate>Sat, 15 Jul 2023 09:49:14 +0800</pubDate>
       
-      <guid>https://jia-baos.github.io/basical-skills/%E4%BC%A0%E9%80%92%E5%87%BD%E6%95%B0%E6%A8%A1%E6%9D%BF/</guid>
+      <guid>https://jia-baos.github.io/blogs/%E4%BC%A0%E9%80%92%E5%87%BD%E6%95%B0%E6%A8%A1%E6%9D%BF/</guid>
       <description>#include &amp;lt;bits/stdc++.h&amp;gt; #define BY_NAME(F) [](auto&amp;amp;&amp;amp;...args){return F(args...);} template&amp;lt;typename F, typename...Args&amp;gt; auto foo(F f, Args &amp;amp;&amp;amp;...args) { return f(std::forward&amp;lt;Args&amp;gt;(args)...); } int main() { const auto val1 = foo([](auto &amp;amp;&amp;amp;...args) { return std::min(args...); }, 1, 2); std::cout &amp;lt;&amp;lt; val1 &amp;lt;&amp;lt; std::endl; const auto val2 = foo(BY_NAME(std::min), 1, 2); std::cout &amp;lt;&amp;lt; val2 &amp;lt;&amp;lt; std::endl; } </description>
     </item>
     
     <item>
       <title>重载、重写、覆盖</title>
-      <link>https://jia-baos.github.io/basical-skills/%E9%87%8D%E8%BD%BD%E5%92%8C%E9%87%8D%E5%86%99%E5%92%8C%E8%A6%86%E7%9B%96/</link>
+      <link>https://jia-baos.github.io/blogs/%E9%87%8D%E8%BD%BD%E5%92%8C%E9%87%8D%E5%86%99%E5%92%8C%E8%A6%86%E7%9B%96/</link>
       <pubDate>Fri, 14 Jul 2023 19:37:43 +0800</pubDate>
       
-      <guid>https://jia-baos.github.io/basical-skills/%E9%87%8D%E8%BD%BD%E5%92%8C%E9%87%8D%E5%86%99%E5%92%8C%E8%A6%86%E7%9B%96/</guid>
-      <description>#include &amp;lt;iostream&amp;gt; class A { public: virtual void vfunc1() { puts(&amp;#34;A::vfunc1&amp;#34;); } virtual void vfunc2() { puts(&amp;#34;A::vfunc2&amp;#34;); } void func1() { puts(&amp;#34;A::func1&amp;#34;); } void func2() { puts(&amp;#34;A::func2&amp;#34;); } virtual void vfunc2(int val) { puts(&amp;#34;A::vfunc2 overload&amp;#34;); } void func2(int val) { puts(&amp;#34;A::func2 overload&amp;#34;); } private: int m_data1; int m_data2; }; class B :public A { public: virtual void vfunc1() { puts(&amp;#34;B::vfunc1&amp;#34;); } void func1() { puts(&amp;#34;B::func1&amp;#34;); } private: int m_data3; }; class C :public B { public: virtual void vfunc2() { puts(&amp;#34;C::vfunc2&amp;#34;); } void func2() { puts(&amp;#34;C::func2&amp;#34;); } private: int m_data1; int m_data4; }; int main(int argc, char* argv[]) { std::cout &amp;lt;&amp;lt; _MSVC_LANG &amp;lt;&amp;lt; std::endl; A a; B b; C c; puts(&amp;#34;-----------------&amp;#34;); a.</description>
+      <guid>https://jia-baos.github.io/blogs/%E9%87%8D%E8%BD%BD%E5%92%8C%E9%87%8D%E5%86%99%E5%92%8C%E8%A6%86%E7%9B%96/</guid>
+      <description>编译器的处理过程 在C++中，覆盖（Overriding）、重载（Overloading）和隐藏（Hiding）是三种不同的概念，它们在编译器处理上有着不同的机制。
+覆盖（Overriding）：覆盖发生在继承关系中，当派生类中的函数和基类中的虚函数有相同的函数名和参数列表时，我们说派生类的函数覆盖了基类的函数。在编译器处理覆盖时，会在虚函数表（vtable）中为派生类的函数分配一个新的入口，这样在运行时，通过基类指针或引用调用该函数时，会根据虚函数表找到派生类的函数，实现动态绑定。
+重载（Overloading）：重载是指在同一作用域中，有多个同名函数，但参数列表不同。编译器处理重载时，会根据函数调用时提供的参数类型和数量，选择最匹配的函数进行调用。这个过程在编译时完成，称为静态绑定。
+隐藏（Hiding）：隐藏发生在继承关系中，当派生类中的函数和基类中的函数有相同的函数名，但参数列表不同，或者函数名和参数列表相同但基类函数不是虚函数时，我们说派生类的函数隐藏了基类的函数。在编译器处理隐藏时，会优先在派生类的作用域中查找函数，如果找到了就调用派生类的函数，否则就在基类的作用域中查找。这个过程也是在编译时完成，称为静态绑定。
+#include &amp;lt;iostream&amp;gt; class A { public: virtual void vfunc1() { puts(&amp;#34;A::vfunc1&amp;#34;); } virtual void vfunc2() { puts(&amp;#34;A::vfunc2&amp;#34;); } void func1() { puts(&amp;#34;A::func1&amp;#34;); } void func2() { puts(&amp;#34;A::func2&amp;#34;); } virtual void vfunc2(int val) { puts(&amp;#34;A::vfunc2 overload&amp;#34;); } void func2(int val) { puts(&amp;#34;A::func2 overload&amp;#34;); } private: int m_data1; int m_data2; }; class B :public A { public: virtual void vfunc1() { puts(&amp;#34;B::vfunc1&amp;#34;); } void func1() { puts(&amp;#34;B::func1&amp;#34;); } private: int m_data3; }; class C :public B { public: virtual void vfunc2() { puts(&amp;#34;C::vfunc2&amp;#34;); } void func2() { puts(&amp;#34;C::func2&amp;#34;); } private: int m_data1; int m_data4; }; int main(int argc, char* argv[]) { std::cout &amp;lt;&amp;lt; _MSVC_LANG &amp;lt;&amp;lt; std::endl; A a; B b; C c; puts(&amp;#34;-----------------&amp;#34;); a.</description>
     </item>
     
     <item>
       <title>STL仿函数</title>
-      <link>https://jia-baos.github.io/basical-skills/stl%E4%BB%BF%E5%87%BD%E6%95%B0/</link>
+      <link>https://jia-baos.github.io/blogs/stl%E4%BB%BF%E5%87%BD%E6%95%B0/</link>
       <pubDate>Wed, 12 Jul 2023 20:44:46 +0800</pubDate>
       
-      <guid>https://jia-baos.github.io/basical-skills/stl%E4%BB%BF%E5%87%BD%E6%95%B0/</guid>
+      <guid>https://jia-baos.github.io/blogs/stl%E4%BB%BF%E5%87%BD%E6%95%B0/</guid>
       <description>函数对象（也称 函子）是实现 operator() 的任何类型。 此运算符被称为 调用运算符 （有时称为 应用程序运算符）。 C++ 标准库主要使用函数对象作为容器和算法内的排序条件。
 相对于直接函数调用，函数对象有两个优势。 第一个是函数对象可包含状态。 第二个是函数对象是一个类型，因此可用作模板参数。
 #include &amp;lt;bits/stdc++.h&amp;gt; class Functor { public: int operator()(int a, int b) { return a &amp;lt; b; } }; int main() { std::cout &amp;lt;&amp;lt; __cplusplus &amp;lt;&amp;lt; std::endl; Functor f; int a = 5; int b = 7; std::cout &amp;lt;&amp;lt; f(a, b) &amp;lt;&amp;lt; std::endl; // 1 return 0; } 函数指针。
@@ -263,38 +299,38 @@ class A { protected: A() {} ~A() {} public: static A* create() { return new A();
     
     <item>
       <title>模块</title>
-      <link>https://jia-baos.github.io/basical-skills/%E6%A8%A1%E5%9D%97/</link>
+      <link>https://jia-baos.github.io/blogs/%E6%A8%A1%E5%9D%97/</link>
       <pubDate>Wed, 12 Jul 2023 17:16:44 +0800</pubDate>
       
-      <guid>https://jia-baos.github.io/basical-skills/%E6%A8%A1%E5%9D%97/</guid>
+      <guid>https://jia-baos.github.io/blogs/%E6%A8%A1%E5%9D%97/</guid>
       <description>// Module.ixx module; import &amp;lt;concepts&amp;gt;; export module test; namespace JB { export template&amp;lt;typename T&amp;gt; requires std::is_integral_v&amp;lt;T&amp;gt; T add(const T&amp;amp; t) { return t + 1; } } // main.cpp #include &amp;lt;iostream&amp;gt; import test; int main(int argc, char* argv[]) { std::cout &amp;lt;&amp;lt; JB::add(1) &amp;lt;&amp;lt; std::endl; } </description>
     </item>
     
     <item>
       <title>完美转发</title>
-      <link>https://jia-baos.github.io/basical-skills/%E5%AE%8C%E7%BE%8E%E8%BD%AC%E5%8F%91/</link>
+      <link>https://jia-baos.github.io/blogs/%E5%AE%8C%E7%BE%8E%E8%BD%AC%E5%8F%91/</link>
       <pubDate>Wed, 12 Jul 2023 08:23:07 +0800</pubDate>
       
-      <guid>https://jia-baos.github.io/basical-skills/%E5%AE%8C%E7%BE%8E%E8%BD%AC%E5%8F%91/</guid>
+      <guid>https://jia-baos.github.io/blogs/%E5%AE%8C%E7%BE%8E%E8%BD%AC%E5%8F%91/</guid>
       <description>std::forward被称为完美转发，它的作用是保持原来的值属性不变。
 #include &amp;lt;bits/stdc++.h&amp;gt; template&amp;lt;typename T&amp;gt; void print(T &amp;amp; t){ std::cout &amp;lt;&amp;lt; &amp;#34;left value&amp;#34; &amp;lt;&amp;lt; std::endl; } template&amp;lt;typename T&amp;gt; void print(T &amp;amp;&amp;amp; t){ std::cout &amp;lt;&amp;lt; &amp;#34;right value&amp;#34; &amp;lt;&amp;lt; std::endl; } template&amp;lt;typename T&amp;gt; void testForward(T &amp;amp;&amp;amp; v){ print(v); print(std::forward&amp;lt;T&amp;gt;(v)); print(std::move(v)); } int main() { std::cout &amp;lt;&amp;lt; __cplusplus &amp;lt;&amp;lt; std::endl; testForward(1); /* * left value * right value * right value */ int x = 1; testForward(x); /* * left value * left value * right value */ return 0; } #include &amp;lt;bits/stdc++.</description>
     </item>
     
     <item>
       <title>概念、约束</title>
-      <link>https://jia-baos.github.io/basical-skills/%E6%A6%82%E5%BF%B5%E5%92%8C%E7%BA%A6%E6%9D%9F/</link>
+      <link>https://jia-baos.github.io/blogs/%E6%A6%82%E5%BF%B5%E5%92%8C%E7%BA%A6%E6%9D%9F/</link>
       <pubDate>Tue, 11 Jul 2023 22:42:52 +0800</pubDate>
       
-      <guid>https://jia-baos.github.io/basical-skills/%E6%A6%82%E5%BF%B5%E5%92%8C%E7%BA%A6%E6%9D%9F/</guid>
+      <guid>https://jia-baos.github.io/blogs/%E6%A6%82%E5%BF%B5%E5%92%8C%E7%BA%A6%E6%9D%9F/</guid>
       <description>#include &amp;lt;iostream&amp;gt; #include &amp;lt;concepts&amp;gt; template&amp;lt;typename T&amp;gt; concept is_integral = std::is_integral_v&amp;lt;T&amp;gt;; // requires 子句，不是 requires 表达式 template&amp;lt;typename T&amp;gt; requires is_integral&amp;lt;T&amp;gt; T add0(const T&amp;amp; t) { std::cout &amp;lt;&amp;lt; &amp;#34;用require关键字定义一个概念或约束，requires子句&amp;#34; &amp;lt;&amp;lt; std::endl; return t + 1; } // 临时约束，注意关键字用了两次 template&amp;lt;typename T&amp;gt; requires requires (T t) { std::is_integral_v&amp;lt;T&amp;gt;; } T add1(const T&amp;amp; t) { std::cout &amp;lt;&amp;lt; &amp;#34;用require关键字定义一个概念或约束，requires表达式，临时约束&amp;#34; &amp;lt;&amp;lt; std::endl; return t + 1; } template&amp;lt;typename T&amp;gt; T add2(const T&amp;amp; t) requires is_integral&amp;lt;T&amp;gt; { std::cout &amp;lt;&amp;lt; &amp;#34;在函数签名中使用require关键字&amp;#34; &amp;lt;&amp;lt; std::endl; return t + 1; } template&amp;lt;is_integral T&amp;gt; T add3(const T&amp;amp; t) { std::cout &amp;lt;&amp;lt; &amp;#34;在模板声明中使用概念&amp;#34; &amp;lt;&amp;lt; std::endl; return t + 1; } auto add4(const is_integral auto&amp;amp; t) { std::cout &amp;lt;&amp;lt; &amp;#34;在参数列表中使用概念&amp;#34; &amp;lt;&amp;lt; std::endl; return t + 1; } // 经由返回类型启用 template&amp;lt;typename T&amp;gt; typename std::enable_if&amp;lt;std::is_integral&amp;lt;T&amp;gt;::value, int&amp;gt;::type add5(const T&amp;amp; arg) { std::cout &amp;lt;&amp;lt; &amp;#34;经由返回类型启用&amp;#34; &amp;lt;&amp;lt; std::endl; return arg + 1; } // 经由非类型模板形参启用 template&amp;lt;typename T, std::enable_if&amp;lt;std::is_integral&amp;lt;T&amp;gt;::value, int&amp;gt;::type = 0&amp;gt; T add6(const T&amp;amp; arg) { std::cout &amp;lt;&amp;lt; &amp;#34;经由非类型模板形参启用&amp;#34; &amp;lt;&amp;lt; std::endl; return arg + 1; } // 经由类型模板形参启用 template&amp;lt;typename T, typename = typename std::enable_if&amp;lt;std::is_integral&amp;lt;T&amp;gt;::value, int&amp;gt;::type&amp;gt; T add7(const T&amp;amp; arg) { std::cout &amp;lt;&amp;lt; &amp;#34;经由类型模板形参启用&amp;#34; &amp;lt;&amp;lt; std::endl; return arg + 1; } int main(int argc, char* argv[]) { std::cout &amp;lt;&amp;lt; add0(1) &amp;lt;&amp;lt; std::endl; std::cout &amp;lt;&amp;lt; add1(1) &amp;lt;&amp;lt; std::endl; std::cout &amp;lt;&amp;lt; add2(1) &amp;lt;&amp;lt; std::endl; std::cout &amp;lt;&amp;lt; add3(1) &amp;lt;&amp;lt; std::endl; std::cout &amp;lt;&amp;lt; add4(1) &amp;lt;&amp;lt; std::endl; std::cout &amp;lt;&amp;lt; add5(1) &amp;lt;&amp;lt; std::endl; std::cout &amp;lt;&amp;lt; add6(1) &amp;lt;&amp;lt; std::endl; std::cout &amp;lt;&amp;lt; add7(1) &amp;lt;&amp;lt; std::endl; } </description>
     </item>
     
     <item>
       <title>Traits特性</title>
-      <link>https://jia-baos.github.io/basical-skills/traits%E7%89%B9%E6%80%A7/</link>
+      <link>https://jia-baos.github.io/blogs/traits%E7%89%B9%E6%80%A7/</link>
       <pubDate>Tue, 11 Jul 2023 15:15:37 +0800</pubDate>
       
-      <guid>https://jia-baos.github.io/basical-skills/traits%E7%89%B9%E6%80%A7/</guid>
+      <guid>https://jia-baos.github.io/blogs/traits%E7%89%B9%E6%80%A7/</guid>
       <description>Think of a trait as a small object whose main purpose is to carry information used by another object or algorithm to determine “policy” or “implementation details”. - Bjarne Stroustrup
 模板的全特化、偏特化。
 #include &amp;lt;bits/stdc++.h&amp;gt; // 模板一般化设计 /* * 模板全特化和偏特化设计版本存在时， * 优点调用 */ template &amp;lt;typename T&amp;gt; struct MyPrint { void print() { std::cout &amp;lt;&amp;lt; &amp;#34;模板一般化设计&amp;#34; &amp;lt;&amp;lt; std::endl; } }; // 模板全特化设计 template &amp;lt;&amp;gt; struct MyPrint&amp;lt;float&amp;gt; { void print() { std::cout &amp;lt;&amp;lt; &amp;#34;模板全特化设计&amp;#34; &amp;lt;&amp;lt; std::endl; } }; // 模板偏特化设计 /* *模板特化时，可以只指定一部分而非所有模板参数， *或者是参数的一部分而非全部特性，这叫做模板的偏特化。 *一个类模板的偏特化本身是一个模板， *使用它时用户还必须为那些在特例化版本中未指定的模板参数提供实参。 */ template &amp;lt;typename T&amp;gt; struct MyPrint&amp;lt;T *&amp;gt; { void print() { std::cout &amp;lt;&amp;lt; &amp;#34;模板偏特化设计&amp;#34; &amp;lt;&amp;lt; std::endl; } }; int main(int argc, char *argv[]) { MyPrint&amp;lt;int&amp;gt; a; MyPrint&amp;lt;float&amp;gt; b; MyPrint&amp;lt;float *&amp;gt; c; a.</description>
@@ -302,10 +338,10 @@ class A { protected: A() {} ~A() {} public: static A* create() { return new A();
     
     <item>
       <title>左值、右值</title>
-      <link>https://jia-baos.github.io/basical-skills/%E5%B7%A6%E5%80%BC%E5%92%8C%E5%8F%B3%E5%80%BC/</link>
+      <link>https://jia-baos.github.io/blogs/%E5%B7%A6%E5%80%BC%E5%92%8C%E5%8F%B3%E5%80%BC/</link>
       <pubDate>Mon, 10 Jul 2023 10:46:51 +0800</pubDate>
       
-      <guid>https://jia-baos.github.io/basical-skills/%E5%B7%A6%E5%80%BC%E5%92%8C%E5%8F%B3%E5%80%BC/</guid>
+      <guid>https://jia-baos.github.io/blogs/%E5%B7%A6%E5%80%BC%E5%92%8C%E5%8F%B3%E5%80%BC/</guid>
       <description>值类别 每个 C++ 表达式（带有操作数的操作符、字面量、变量名等）可按照两种独立的特性加以辨别：类型和值类别 (value category)。每个表达式都具有某种非引用类型，且每个表达式只属于三种基本值类别中的一种：纯右值 (prvalue)、亡值 (xvalue)、左值 (lvalue)。
 泛左值 (glvalue)（“泛化 (generalized)”的左值）是一个表达式，其值可确定某个对象或函数的标识； 纯右值 (prvalue)（“纯 (pure)”的右值）是求值符合下列之一的表达式： 计算某个运算符的操作数的值（这种纯右值没有结果对象） 初始化某个对象（称这种纯右值有一个结果对象）。结果对象可以是变量，由 new 表达式创建的对象，由临时量实质化创建的临时对象，或者前述三类对象的成员。注意非 void 的弃值表达式有结果对象（即被实质化的临时量）。并且在作为 decltype 的操作数以外的情况下，每个类类型或数组类型的纯右值都有结果对象； 亡值 (xvalue)（“将亡 (expiring)”的值）是代表它的资源能够被重新使用的对象或位域的泛左值； 左值 (lvalue)（如此称呼的历史原因是，左值可以在赋值表达式的左边出现）是非亡值的泛左值； 右值 (rvalue)（如此称呼的历史原因是，右值可以在赋值表达式的右边出现）是纯右值或者亡值。 基本类别 左值 下列表达式是左值表达式：
 变量、函数、模板形参对象 (C++20 起)或数据成员的名字，不论类型，例如 std::cin 或 std::endl。即使变量的类型是右值引用，由它的名字构成的表达式仍是左值表达式； 返回类型是左值引用的函数调用或重载运算符表达式，例如 std::getline(std::cin, str)、std::cout &amp;lt;&amp;lt; 1、str1 = str2 或 ++it； a = b，a += b，a %= b，以及所有其他内建的赋值及复合赋值表达式； ++a 和 --a，内建的前置自增与前置自减表达式； *p，内建的间接寻址表达式； a[n] 和 n[a]，内建的下标表达式，当 a[n] 中的一个操作数是数组左值时 (C++11 起)； a.m，对象成员表达式，除了 m 是成员枚举项或非静态成员函数，或者 a 是右值而 m 是对象类型的非静态数据成员的情况； p-&amp;gt;m，内建的指针成员表达式，除了 m 是成员枚举项或非静态成员函数的情况； a.</description>

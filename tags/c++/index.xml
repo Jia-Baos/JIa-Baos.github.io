@@ -9,10 +9,10 @@
     <lastBuildDate>Wed, 05 Apr 2023 12:08:11 +0800</lastBuildDate><atom:link href="https://jia-baos.github.io/tags/c++/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Basical Skills</title>
-      <link>https://jia-baos.github.io/biography/basicalskills/</link>
+      <link>https://jia-baos.github.io/resume/basicalskills/</link>
       <pubDate>Wed, 05 Apr 2023 12:08:11 +0800</pubDate>
       
-      <guid>https://jia-baos.github.io/biography/basicalskills/</guid>
+      <guid>https://jia-baos.github.io/resume/basicalskills/</guid>
       <description>Notes: Here is a link to my Github homepage, Jia-Baos.
 C++ is the programming language i use most, python and shell are often used for scripting, furthermore, cmake and mingw wil be used for compiling across platforms.
 Opencv is the 3rd party library i use most, besides, i&amp;rsquo;m also trying more 3rd party libraries such as: Blas, MKL, etc.</description>
