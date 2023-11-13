@@ -6,7 +6,22 @@
     <description>Recent content on Jia-Baos</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Fri, 10 Nov 2023 15:38:09 +0800</lastBuildDate><atom:link href="https://jia-baos.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 13 Nov 2023 14:47:17 +0800</lastBuildDate><atom:link href="https://jia-baos.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>委托构造</title>
+      <link>https://jia-baos.github.io/blogs/%E5%A7%94%E6%89%98%E6%9E%84%E9%80%A0/</link>
+      <pubDate>Mon, 13 Nov 2023 14:47:17 +0800</pubDate>
+      
+      <guid>https://jia-baos.github.io/blogs/%E5%A7%94%E6%89%98%E6%9E%84%E9%80%A0/</guid>
+      <description>注意事项：
+1.被委托的构造函数在委托构造函数的初始化列表里被调用，而不是在委托构造函数的函数体里被调用。
+如果只是在函数体里调用被委托的构造函数，则只会执行被委托构造函数函数体里的内容（忽略初始化操作），此时委托构造函数的初始化列表负责对象成员的初始化，如果对象成员在初始化列表中被忽略，则执行默认初始化（当然，这时它也只是一个普通构造函数，而非委托构造函数）。
+2.委托构造函数的初始值列表中，只允许出现被委托的构造函数，而不能直接给成员变量进行初始化。
+3.先执行被委托构造函数的初始化列表，然后执行被委托构造函数的函数体，最后返回执行委托构造函数的函数体。
+4.被委托的构造函数同样可以是一个委托构造函数，它继续委托另一个构造函数完成初始化任务。
+#include &amp;lt;bits/stdc++.h&amp;gt; class student { public: int age = 18; int weight = 120; student(int give_age) : student(give_age, 180) // 委托构造函数 { std::cout &amp;lt;&amp;lt; &amp;#34;委托老兄办点事！&amp;#34; &amp;lt;&amp;lt; std::endl; } student(int give_age, int give_weight) : age(give_age), weight(give_weight) { std::cout &amp;lt;&amp;lt; &amp;#34;我被委托做一些事情！&amp;#34; &amp;lt;&amp;lt; std::endl; } }; int main() { const student stu = student(20); std::cout &amp;lt;&amp;lt; stu.age &amp;lt;&amp;lt; &amp;#34; &amp;#34; &amp;lt;&amp;lt; stu.weight &amp;lt;&amp;lt; std::endl; return 0; } </description>
+    </item>
+    
     <item>
       <title>字符串数组长度</title>
       <link>https://jia-baos.github.io/blogs/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%95%B0%E7%BB%84%E9%95%BF%E5%BA%A6/</link>
