@@ -6,7 +6,19 @@
     <description>Recent content in articles on Jia-Baos</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Mon, 13 Nov 2023 14:47:17 +0800</lastBuildDate><atom:link href="https://jia-baos.github.io/categories/articles/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 13 Nov 2023 17:06:55 +0800</lastBuildDate><atom:link href="https://jia-baos.github.io/categories/articles/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Function容器</title>
+      <link>https://jia-baos.github.io/blogs/function%E5%AE%B9%E5%99%A8/</link>
+      <pubDate>Mon, 13 Nov 2023 17:06:55 +0800</pubDate>
+      
+      <guid>https://jia-baos.github.io/blogs/function%E5%AE%B9%E5%99%A8/</guid>
+      <description>注意：
+原作者：双笙子佯谬
+源代码链接： std::function容器实现
+#ifndef FUNC_H #define FUNC_H #include &amp;lt;iostream&amp;gt; #include &amp;lt;utility&amp;gt; #include &amp;lt;stdexcept&amp;gt; #include &amp;lt;memory&amp;gt; #include &amp;lt;type_traits&amp;gt; #include &amp;lt;functional&amp;gt; template &amp;lt;typename FuncSign&amp;gt; struct Func { // 只在使用了不符合 Ret(Args...) 模式的 FuncSign 时出错 static_assert(!std::is_same_v&amp;lt;FuncSign, FuncSign&amp;gt;, &amp;#34;not a valid function signature&amp;#34;); }; template &amp;lt;typename Ret, typename... Args&amp;gt; struct Func&amp;lt;Ret(Args...)&amp;gt; { private: struct FuncBase { virtual Ret call(Args... args) = 0; // 纯虚函数，类型擦除后的统一接口 virtual ~FuncBase() = default; // 应对F可能有非平凡析构的情况 }; template &amp;lt;typename F&amp;gt; struct FuncImpl : FuncBase { // FuncImpl 会被实例化多次，每个不同的仿函数类都产生一次实例化 F m_f; FuncImpl(F f) : m_f(std::move(f)) {} virtual Ret call(Args.</description>
+    </item>
+    
     <item>
       <title>委托构造</title>
       <link>https://jia-baos.github.io/blogs/%E5%A7%94%E6%89%98%E6%9E%84%E9%80%A0/</link>
