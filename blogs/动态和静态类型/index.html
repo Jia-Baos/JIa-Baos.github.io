@@ -82,8 +82,8 @@
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>	puts(<span style="color:#e6db74">&#34;----------------&#34;</span>);
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// (*ptr)的静态类型是B
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#75715e">// (*ptr)的静态类型是D
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// (*ptr)的静态类型是Base
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	<span style="color:#75715e">// (*ptr)的动态类型是Derived
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>	std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>boolalpha
 </span></span><span style="display:flex;"><span>		<span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>is_same_v<span style="color:#f92672">&lt;</span>std<span style="color:#f92672">::</span>remove_reference_t<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">decltype</span>(<span style="color:#f92672">*</span>ptr)<span style="color:#f92672">&gt;</span>, Base<span style="color:#f92672">&gt;</span> <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>endl;
 </span></span><span style="display:flex;"><span>	std<span style="color:#f92672">::</span>cout <span style="color:#f92672">&lt;&lt;</span> std<span style="color:#f92672">::</span>boolalpha
