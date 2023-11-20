@@ -14,7 +14,8 @@
       
       <guid>https://jia-baos.github.io/resume/biography/</guid>
       <description>Notes: Here is a link to my Github homepage, Jia-Baos.
-I am pursuing my master’s degree in Shandong University of Science and Technology. My main focus is computer vision and their applications in industry, besides, i am pleased to embrace new technologies and amazing ideas.</description>
+I received the B.E. degree from Civil Aviation Flight University of China, Guanghan, China, in 2019, and currently pursuing the M.E. degree in College of Intelligent Equipment, Shandong University of Science and Technology.
+My research interests include image registration, image stitching, and optical flow estimation.</description>
     </item>
     
     <item>
@@ -24,8 +25,12 @@ I am pursuing my master’s degree in Shandong University of Science and Technol
       
       <guid>https://jia-baos.github.io/resume/basicalskills/</guid>
       <description>Notes: Here is a link to my Github homepage, Jia-Baos.
-C++ is the programming language i use most, python and shell are often used for scripting, furthermore, cmake and mingw wil be used for compiling across platforms.
-Opencv is the 3rd party library i use most, besides, i&amp;rsquo;m also trying more 3rd party libraries such as: Blas, MKL, etc.</description>
+熟练使用C++、熟悉STL中的各种容器
+熟悉Python、Shell、Rust等编程语言
+熟悉Opencv、PaddleOCR、Pytorch等三方库
+熟悉CMake、MinGW、Git等编译、版本控制工具
+熟悉图像配准、图像拼接、光流估计等图像任务
+熟悉计算成像过程、3A、ISP、双目、结构光等技术</description>
     </item>
     
   </channel>
